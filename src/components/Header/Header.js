@@ -56,6 +56,7 @@ const Logo = styled.div`
     }
 
     h1 {
+        font-family: "Krona One", sans-serif;
         color: white;
         font-size: 20px;
     }

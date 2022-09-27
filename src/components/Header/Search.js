@@ -45,7 +45,6 @@ const Container = styled.div`
         box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
         border-radius: 12px;
 
-        font-family: "Lexend Deca", sans-serif;
         padding-left: 20px;
         line-height: 18px;
         font-weight: 400;
