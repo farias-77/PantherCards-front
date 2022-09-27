@@ -48,13 +48,9 @@ export default function SignIn() {
             </Logo>
 
             <Form>
-                {displayInvalid ? (
-                    <InvalidCredentials>
-                        Email ou senha incorretos.
-                    </InvalidCredentials>
-                ) : (
-                    <></>
-                )}
+                <InvalidCredentials>
+                    {displayInvalid ? "Email ou senha incorretos." : ""}
+                </InvalidCredentials>
 
                 <input
                     type="email"
@@ -162,7 +158,7 @@ const WhiteBackGround = styled.div`
 `;
 
 const Form = styled.div`
-    margin-top: 50px;
+    margin-top: 30px;
 
     width: 35%;
 
@@ -227,6 +223,10 @@ const Button = styled.div`
 `;
 
 const InvalidCredentials = styled.div`
+    width: 100%;
+    height: 20px;
+    background-color: black;
+
     font-family: "Krona One", sans-serif;
     font-size: 17px;
     color: white;
