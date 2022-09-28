@@ -74,7 +74,7 @@ const Title = styled.div`
         padding: 15px;
 
         input {
-            height: 30px;
+            height: 40px;
             border-radius: 6px;
             font-size: 15px;
             padding-left: 10px;
