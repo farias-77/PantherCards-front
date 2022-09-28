@@ -131,7 +131,7 @@ export default function DeckCreation() {
                 overlayClassName="modal-overlay"
                 className="modal-content"
             >
-                <Bars height="70" color="white" ariaLabel="Loading..." />
+                <Bars height="60" color="white" ariaLabel="Loading..." />
             </Modal>
         </Container>
     );
@@ -206,7 +206,7 @@ const Button = styled.div`
     cursor: pointer;
 
     @media (max-width: 900px) {
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
 `;
 
