@@ -28,6 +28,9 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
 
+    position: absolute;
+    top: 0;
+    left: 0;
     z-index: 1;
 
     @media (max-width: 900px) {
