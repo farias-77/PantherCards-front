@@ -1,18 +1,31 @@
 import { useState } from "react";
+import { Bars } from "react-loader-spinner";
 import styled from "styled-components";
 
 import DeckTitleCreation from "./DeckTitleCreation";
 import QuestionCreation from "./QuestionCreation";
 
 export default function DeckCreation() {
+    const HALF_SECOND = 500;
+
+    const [loading, setLoading] = useState(false);
     const [deckName, setDeckName] = useState("");
     const [questionsArray, setQuestionsArray] = useState([
         { question: "", answer: "" },
     ]);
 
     function addNewQuestion() {
-        setQuestionsArray([...questionsArray, { question: "", answer: "" }]);
+        setLoading(true);
+        setTimeout(() => {
+            setQuestionsArray([
+                ...questionsArray,
+                { question: "", answer: "" },
+            ]);
+            setLoading(false);
+        }, HALF_SECOND);
     }
+
+    console.log(questionsArray);
 
     return (
         <Container>
@@ -36,7 +49,15 @@ export default function DeckCreation() {
                     ))}
 
                     <NewQuestion onClick={addNewQuestion}>
-                        Adicionar pergunta
+                        {loading ? (
+                            <Bars
+                                height="20"
+                                color="white"
+                                ariaLabel="Loading..."
+                            />
+                        ) : (
+                            "Adicionar pergunta"
+                        )}
                     </NewQuestion>
                 </Content>
             </CreationPage>
@@ -92,6 +113,7 @@ const Content = styled.div`
 
 const NewQuestion = styled.div`
     margin-top: 15px;
+    margin-bottom: 100px;
 
     width: 200px;
     height: 40px;
