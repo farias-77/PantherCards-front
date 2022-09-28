@@ -123,17 +123,15 @@ const Container = styled.div`
     width: 100vw;
     height: 100vh;
 
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
     display: flex;
     flex-direction: column;
     align-items: center;
 
     background-color: black;
+
+    @media (max-width: 950px) {
+        overflow-y: scroll;
+    }
 `;
 
 const Logo = styled.div`
@@ -199,6 +197,8 @@ const Form = styled.div`
 
         input {
             width: 80%;
+            height: 40px;
+            border-radius: 8px;
         }
     }
 `;
@@ -225,6 +225,8 @@ const Button = styled.div`
 
     @media (max-width: 950px) {
         width: 80%;
+        height: 40px;
+        border-radius: 8px;
     }
 `;
 
@@ -245,6 +247,7 @@ const SignInLink = styled.div`
     width: 90%;
 
     margin-top: 20px;
+    margin-bottom: 90px;
 
     font-family: "Krona One", sans-serif;
     font-size: 13px;

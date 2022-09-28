@@ -183,6 +183,8 @@ const Form = styled.div`
 
         input {
             width: 80%;
+            height: 40px;
+            border-radius: 8px;
         }
     }
 `;
@@ -209,6 +211,8 @@ const Button = styled.div`
 
     @media (max-width: 950px) {
         width: 80%;
+        height: 40px;
+        border-radius: 8px;
     }
 `;
 
@@ -229,6 +233,7 @@ const SignUpLink = styled.div`
     width: 90%;
 
     margin-top: 20px;
+    margin-bottom: 90px;
 
     font-family: "Krona One", sans-serif;
     font-size: 13px;
