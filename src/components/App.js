@@ -7,9 +7,12 @@ import "../assets/styles.css";
 import Header from "./Header/Header";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./SignUp/SignUp";
+import Home from "./Home/Home";
 
 export default function App() {
-    const [displayHeader, setDisplayHeader] = useState(false);
+    const [displayHeader, setDisplayHeader] = useState(
+        Boolean(localStorage.getItem("token"))
+    );
 
     return (
         <BrowserRouter>
@@ -24,6 +27,7 @@ export default function App() {
                     element={<SignIn setDisplayHeader={setDisplayHeader} />}
                 />
                 <Route path="/signUp" element={<SignUp />} />
+                <Route path="/home" element={<Home />} />
             </Routes>
         </BrowserRouter>
     );

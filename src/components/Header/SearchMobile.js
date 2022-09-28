@@ -2,7 +2,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function Search() {
+export default function SearchMobile() {
     const [search, setSearch] = useState("");
     const [searchResults, setSearchResults] = useState([]);
 
@@ -29,34 +29,36 @@ export default function Search() {
 }
 
 const Container = styled.div`
-    width: 40%;
-    height: 100%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    input {
-        width: 100%;
-        height: 50px;
-
-        background: #ffffff;
-        border: 1px solid rgba(120, 177, 89, 0.25);
-        box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
-        border-radius: 12px;
-
-        padding-left: 20px;
-        line-height: 18px;
-        font-weight: 400;
-        font-size: 18px;
-        color: #000000;
-
-        ::placeholder {
-            color: #9c9c9c;
-        }
-    }
+    display: none;
 
     @media (max-width: 900px) {
-        display: none;
+        width: 90%;
+        height: 100%;
+
+        margin-top: 10px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        input {
+            width: 100%;
+            height: 50px;
+
+            background: #ffffff;
+            border: 1px solid rgba(120, 177, 89, 0.25);
+            box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
+            border-radius: 12px;
+
+            padding-left: 20px;
+            line-height: 18px;
+            font-weight: 400;
+            font-size: 18px;
+            color: #000000;
+
+            ::placeholder {
+                color: #9c9c9c;
+            }
+        }
     }
 `;
