@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Bars } from "react-loader-spinner";
-import logo from "../../assets/logo.svg";
+import logo from "../../assets/logoPanther.png";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -43,7 +43,6 @@ export default function SignUp() {
             <Logo>
                 <img src={logo} alt="logo" />
                 <h1>PantherCards</h1>
-                <WhiteBackGround />
             </Logo>
 
             <Form>
@@ -162,16 +161,6 @@ const Logo = styled.div`
     @media (max-width: 950px) {
         width: 100%;
     }
-`;
-
-const WhiteBackGround = styled.div`
-    width: 20%;
-    height: 73%;
-
-    position: absolute;
-    top: 5px;
-
-    background-color: white;
 `;
 
 const Form = styled.div`

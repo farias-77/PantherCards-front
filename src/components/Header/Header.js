@@ -1,17 +1,16 @@
-import logo from "../../assets/logo.svg";
+import logo from "../../assets/logoPanther.png";
 import styled from "styled-components";
+import { useState, useEffect } from "react";
 
 import Search from "./Search";
 import Logout from "./Logout";
 
 export default function Header() {
-    function getTokenFromLocalStorage() {
-        const token = localStorage.getItem("token");
+    const [token, setToken] = useState("");
 
-        if (token) return true;
-
-        return false;
-    }
+    useEffect(() => {
+        setToken(localStorage.getItem("token"));
+    }, []);
 
     function returnHeader() {
         return (
@@ -26,7 +25,7 @@ export default function Header() {
         );
     }
 
-    return getTokenFromLocalStorage() ? returnHeader() : <></>;
+    return token ? returnHeader() : <></>;
 }
 
 const Container = styled.div`
@@ -35,14 +34,13 @@ const Container = styled.div`
     background-color: black;
 
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+    z-index: 1;
 `;
 
 const Logo = styled.div`
     width: 30%;
     height: 100%;
-    z-index: 2;
 
     display: flex;
     align-items: center;
@@ -50,7 +48,10 @@ const Logo = styled.div`
 
     padding-left: 30px;
 
+    position: relative;
+
     img {
+        z-index: 3;
         width: 100px;
         background-color: white;
     }
@@ -60,4 +61,15 @@ const Logo = styled.div`
         color: white;
         font-size: 20px;
     }
+`;
+
+const WhiteBackGround = styled.div`
+    background-color: white;
+
+    width: 80px;
+    height: 100%;
+
+    position: absolute;
+    left: 35px;
+    z-index: 2;
 `;
