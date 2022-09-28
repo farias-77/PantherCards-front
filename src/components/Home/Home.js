@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
 export default function Home() {
+    const navigate = useNavigate();
+
     const [decks, setDecks] = useState([]);
 
     useEffect(() => {
@@ -22,14 +25,16 @@ export default function Home() {
         });
     }, []);
 
-    console.log(decks);
+    function navigateToDeckCreation() {
+        navigate("/create");
+    }
 
     return (
         <Container>
             <HomePage>
                 <Title>
                     <h3>Seus decks</h3>
-                    <Button>Novo deck</Button>
+                    <Button onClick={navigateToDeckCreation}>Novo deck</Button>
                 </Title>
                 <Content>
                     {decks.length > 0 ? (
