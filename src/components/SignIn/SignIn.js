@@ -33,7 +33,9 @@ export default function SignIn({ setDisplayHeader }) {
         promise
             .then((res) => {
                 const token = res.data.token;
+                const userId = res.data.id;
                 localStorage.setItem("token", token);
+                localStorage.setItem("userId", userId);
                 setDisplayHeader(true);
                 navigate("/home");
             })
