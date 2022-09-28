@@ -5,7 +5,7 @@ import logo from "../../assets/logoPanther.png";
 import styled from "styled-components";
 import axios from "axios";
 
-export default function SignIn() {
+export default function SignIn({ setDisplayHeader }) {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -30,6 +30,7 @@ export default function SignIn() {
             .then((res) => {
                 const token = res.data.token;
                 localStorage.setItem("token", token);
+                setDisplayHeader(true);
                 navigate("/home");
             })
             .catch((err) => {

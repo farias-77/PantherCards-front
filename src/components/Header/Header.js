@@ -1,31 +1,20 @@
 import logo from "../../assets/logoPanther.png";
 import styled from "styled-components";
-import { useState, useEffect } from "react";
 
 import Search from "./Search";
 import Logout from "./Logout";
 
-export default function Header() {
-    const [token, setToken] = useState("");
-
-    useEffect(() => {
-        setToken(localStorage.getItem("token"));
-    }, []);
-
-    function returnHeader() {
-        return (
-            <Container>
-                <Logo>
-                    <img src={logo} alt="logo" />
-                    <h1>PantherCards</h1>
-                </Logo>
-                <Search />
-                <Logout />
-            </Container>
-        );
-    }
-
-    return token ? returnHeader() : <></>;
+export default function Header({ setDisplayHeader }) {
+    return (
+        <Container>
+            <Logo>
+                <img src={logo} alt="logo" />
+                <h1>PantherCards</h1>
+            </Logo>
+            <Search />
+            <Logout setDisplayHeader={setDisplayHeader} />
+        </Container>
+    );
 }
 
 const Container = styled.div`
@@ -51,8 +40,7 @@ const Logo = styled.div`
     position: relative;
 
     img {
-        z-index: 3;
-        width: 100px;
+        width: 90px;
         background-color: white;
     }
 
@@ -61,15 +49,4 @@ const Logo = styled.div`
         color: white;
         font-size: 20px;
     }
-`;
-
-const WhiteBackGround = styled.div`
-    background-color: white;
-
-    width: 80px;
-    height: 100%;
-
-    position: absolute;
-    left: 35px;
-    z-index: 2;
 `;

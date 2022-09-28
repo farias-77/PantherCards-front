@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+
 import "../assets/reset.css";
 import "../assets/styles.css";
 
@@ -7,11 +9,20 @@ import SignIn from "./SignIn/SignIn";
 import SignUp from "./SignUp/SignUp";
 
 export default function App() {
+    const [displayHeader, setDisplayHeader] = useState(false);
+
     return (
         <BrowserRouter>
-            <Header />
+            {displayHeader ? (
+                <Header setDisplayHeader={setDisplayHeader} />
+            ) : (
+                <></>
+            )}
             <Routes>
-                <Route path="/" element={<SignIn />} />
+                <Route
+                    path="/"
+                    element={<SignIn setDisplayHeader={setDisplayHeader} />}
+                />
                 <Route path="/signUp" element={<SignUp />} />
             </Routes>
         </BrowserRouter>

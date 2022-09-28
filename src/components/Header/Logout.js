@@ -1,10 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import { IoIosLogOut } from "react-icons/io";
 import styled from "styled-components";
 
-export default function Logout() {
+export default function Logout({ setDisplayHeader }) {
+    const navigate = useNavigate();
+
+    function logout() {
+        localStorage.removeItem("token");
+        setDisplayHeader(false);
+        navigate("/");
+    }
+
     return (
         <Container>
-            <IoIosLogOut />
+            <IoIosLogOut onClick={logout} />
         </Container>
     );
 }
