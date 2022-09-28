@@ -26,6 +26,14 @@ const Container = styled.div`
         font-size: 15px;
         margin-bottom: 20px;
     }
+
+    @media (max-width: 900px) {
+        width: 85%;
+
+        p {
+            font-size: 13px;
+        }
+    }
 `;
 
 const Title = styled.div`
@@ -59,6 +67,17 @@ const Title = styled.div`
 
         ::placeholder {
             color: #9c9c9c;
+        }
+    }
+
+    @media (max-width: 900px) {
+        padding: 15px;
+
+        input {
+            height: 30px;
+            border-radius: 6px;
+            font-size: 15px;
+            padding-left: 10px;
         }
     }
 `;

@@ -110,7 +110,7 @@ export default function DeckCreation() {
                     ))}
 
                     <Controls>
-                        <NewQuestion onClick={addNewQuestion} ref={newQuestion}>
+                        <Button onClick={addNewQuestion} ref={newQuestion}>
                             {loadingNewQuestion ? (
                                 <Bars
                                     height="20"
@@ -120,8 +120,8 @@ export default function DeckCreation() {
                             ) : (
                                 "Adicionar pergunta"
                             )}
-                        </NewQuestion>
-                        <SendDeck onClick={postDeck}>Enviar perguntas</SendDeck>
+                        </Button>
+                        <Button onClick={postDeck}>Enviar perguntas</Button>
                     </Controls>
                 </Content>
             </CreationPage>
@@ -141,7 +141,7 @@ const Container = styled.div`
     width: 100%;
     height: 100vh;
 
-    padding-top: 100px;
+    padding-top: 70px;
 
     display: flex;
     justify-content: center;
@@ -151,6 +151,10 @@ const CreationPage = styled.div`
     width: 50%;
 
     padding-top: 100px;
+
+    @media (max-width: 900px) {
+        width: 100%;
+    }
 `;
 
 const Title = styled.div`
@@ -165,6 +169,12 @@ const Title = styled.div`
         font-size: 30px;
         margin-bottom: 20px;
     }
+
+    @media (max-width: 900px) {
+        h3 {
+            font-size: 20px;
+        }
+    }
 `;
 
 const Content = styled.div`
@@ -174,42 +184,10 @@ const Content = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    > h5 {
-        color: white;
-        font-size: 20px;
-
-        padding-top: 100px;
-    }
 `;
 
-const NewQuestion = styled.div`
-    margin-top: 15px;
-    margin-bottom: 100px;
+const Button = styled.div`
     margin-right: 10px;
-
-    width: 200px;
-    height: 40px;
-
-    background-color: black;
-    border: 1px solid white;
-    border-radius: 10px;
-
-    color: white;
-    font-size: 18px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    cursor: pointer;
-`;
-
-const SendDeck = styled.div`
-    margin-left: 10px;
-
-    margin-top: 15px;
-    margin-bottom: 100px;
 
     width: 180px;
     height: 40px;
@@ -226,6 +204,10 @@ const SendDeck = styled.div`
     justify-content: center;
 
     cursor: pointer;
+
+    @media (max-width: 900px) {
+        margin-bottom: 15px;
+    }
 `;
 
 const Controls = styled.div`
@@ -233,4 +215,13 @@ const Controls = styled.div`
 
     display: flex;
     justify-content: center;
+
+    margin-top: 20px;
+    margin-bottom: 100px;
+
+    @media (max-width: 900px) {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 `;

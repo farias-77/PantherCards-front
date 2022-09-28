@@ -62,6 +62,14 @@ const Container = styled.div`
         margin-top: 30px;
         margin-bottom: 20px;
     }
+
+    @media (max-width: 900px) {
+        width: 85%;
+
+        p {
+            font-size: 13px;
+        }
+    }
 `;
 
 const Question = styled.div`
@@ -75,6 +83,7 @@ const Question = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 
     input {
         width: 100%;
@@ -85,7 +94,6 @@ const Question = styled.div`
         box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
         border-radius: 8px;
 
-        margin: 10px 0;
         padding-left: 20px;
 
         line-height: 18px;
@@ -93,8 +101,21 @@ const Question = styled.div`
         font-size: 18px;
         color: #000000;
 
+        margin: 7px 0;
+
         ::placeholder {
             color: #9c9c9c;
+        }
+    }
+
+    @media (max-width: 900px) {
+        padding: 8px 15px;
+
+        input {
+            height: 30px;
+            border-radius: 6px;
+            font-size: 15px;
+            padding-left: 10px;
         }
     }
 `;
