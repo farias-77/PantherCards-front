@@ -10,7 +10,9 @@ export default function DeckCreation() {
         { question: "", answer: "" },
     ]);
 
-    console.log(questionsArray);
+    function addNewQuestion() {
+        setQuestionsArray([...questionsArray, { question: "", answer: "" }]);
+    }
 
     return (
         <Container>
@@ -33,7 +35,9 @@ export default function DeckCreation() {
                         />
                     ))}
 
-                    <NewQuestion>Adicionar pergunta</NewQuestion>
+                    <NewQuestion onClick={addNewQuestion}>
+                        Adicionar pergunta
+                    </NewQuestion>
                 </Content>
             </CreationPage>
         </Container>
@@ -48,8 +52,6 @@ const Container = styled.div`
 
     display: flex;
     justify-content: center;
-
-    background-color: #323232;
 `;
 
 const CreationPage = styled.div`
