@@ -1,12 +1,16 @@
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
-import axios from "axios";
 
 import DeckTitleCreation from "./DeckTitleCreation";
+import QuestionCreation from "./QuestionCreation";
 
 export default function DeckCreation() {
-    const [questions, setQuestions] = useState([]);
+    const [deckName, setDeckName] = useState("");
+    const [questionsArray, setQuestionsArray] = useState([
+        { question: "", answer: "" },
+    ]);
+
+    console.log(questionsArray);
 
     return (
         <Container>
@@ -15,8 +19,21 @@ export default function DeckCreation() {
                     <h3>Crie um novo deck!</h3>
                 </Title>
                 <Content>
-                    <DeckTitleCreation />
-                    <DeckQuestionCreation />
+                    <DeckTitleCreation
+                        deckName={deckName}
+                        setDeckName={setDeckName}
+                    />
+
+                    {questionsArray.map((question, index) => (
+                        <QuestionCreation
+                            key={index}
+                            questionsArray={questionsArray}
+                            setQuestionsArray={setQuestionsArray}
+                            index={index}
+                        />
+                    ))}
+
+                    <NewQuestion>Adicionar pergunta</NewQuestion>
                 </Content>
             </CreationPage>
         </Container>
@@ -45,12 +62,13 @@ const Title = styled.div`
     width: 100%;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 
     h3 {
         font-family: "Krona One", sans-serif;
         color: white;
         font-size: 30px;
+        margin-bottom: 20px;
     }
 `;
 
@@ -59,7 +77,8 @@ const Content = styled.div`
     margin-top: 30px;
 
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 
     > h5 {
         color: white;
@@ -67,4 +86,24 @@ const Content = styled.div`
 
         padding-top: 100px;
     }
+`;
+
+const NewQuestion = styled.div`
+    margin-top: 15px;
+
+    width: 200px;
+    height: 40px;
+
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 10px;
+
+    color: white;
+    font-size: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
 `;

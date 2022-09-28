@@ -1,9 +1,6 @@
 import styled from "styled-components";
-import { useState } from "react";
 
-export default function DeckTitleCreation() {
-    const [deckName, setDeckName] = useState("");
-
+export default function DeckTitleCreation({ deckName, setDeckName }) {
     return (
         <Container>
             <input
@@ -17,8 +14,8 @@ export default function DeckTitleCreation() {
 }
 
 const Container = styled.div`
-    width: 80%;
-    padding: 15px;
+    width: 60%;
+    padding: 20px;
 
     border: 1px solid white;
     border-radius: 12px;
@@ -30,7 +27,7 @@ const Container = styled.div`
 
     input {
         width: 100%;
-        height: 30px;
+        height: 40px;
 
         background: #ffffff;
         border: 1px solid rgba(120, 177, 89, 0.25);
