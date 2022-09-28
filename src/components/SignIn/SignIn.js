@@ -78,7 +78,7 @@ export default function SignIn({ setDisplayHeader }) {
                 <Button onClick={submitSignIn}>
                     {displayLoading ? (
                         <Bars
-                            height="40"
+                            height="34"
                             color="white"
                             ariaLabel="Loading..."
                         />

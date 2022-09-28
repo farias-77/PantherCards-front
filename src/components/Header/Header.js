@@ -76,6 +76,7 @@ const Logo = styled.div`
 
         h1 {
             display: block;
+            font-size: 15px;
         }
 
         img {
