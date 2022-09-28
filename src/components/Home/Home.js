@@ -59,8 +59,6 @@ const Container = styled.div`
 
     display: flex;
     justify-content: center;
-
-    background-color: #323232;
 `;
 
 const HomePage = styled.div`
