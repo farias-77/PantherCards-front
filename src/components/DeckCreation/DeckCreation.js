@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Bars } from "react-loader-spinner";
 import styled from "styled-components";
 
@@ -24,8 +24,6 @@ export default function DeckCreation() {
             setLoading(false);
         }, HALF_SECOND);
     }
-
-    console.log(questionsArray);
 
     return (
         <Container>

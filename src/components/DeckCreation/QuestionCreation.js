@@ -11,13 +11,21 @@ export default function QuestionCreation({
         ...questionsArray[index],
     });
 
-    useEffect(() => {
+    function saveQuestion() {
         setQuestionsArray(
             questionsArray.map((question, questionIndex) =>
                 questionIndex === index ? { ...questionData } : { ...question }
             )
         );
-    }, [questionData]);
+    }
+
+    function deleteQuestion() {
+        setQuestionsArray(
+            questionsArray.filter(
+                (question, questionIndex) => questionIndex !== index
+            )
+        );
+    }
 
     return (
         <Container>
@@ -45,7 +53,9 @@ export default function QuestionCreation({
                         })
                     }
                 />
-                <Button>Salvar</Button>
+                <Controls>
+                    <Button onClick={deleteQuestion}>Apagar</Button>
+                </Controls>
             </Question>
         </Container>
     );
@@ -98,9 +108,18 @@ const Question = styled.div`
     }
 `;
 
+const Controls = styled.div`
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+`;
+
 const Button = styled.div`
     width: 120px;
     height: 40px;
+
+    margin: 0 10px;
 
     border-radius: 8px;
     border: 1px solid white;

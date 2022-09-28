@@ -1,20 +1,35 @@
 import styled from "styled-components";
+import { DebounceInput } from "react-debounce-input";
 
 export default function DeckTitleCreation({ deckName, setDeckName }) {
     return (
         <Container>
-            <input
-                placeholder="Nome do deck"
-                value={deckName}
-                onChange={(e) => setDeckName(e.target.value)}
-            />
-            <Button>Salvar</Button>
+            <p>Título</p>
+            <Title>
+                <DebounceInput
+                    debounceTimeout={500}
+                    placeholder="Título do deck"
+                    value={deckName}
+                    onChange={(e) => setDeckName(e.target.value)}
+                />
+            </Title>
         </Container>
     );
 }
 
 const Container = styled.div`
     width: 60%;
+
+    p {
+        font-family: "Krona One", sans-serif;
+        color: white;
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+`;
+
+const Title = styled.div`
+    width: 100%;
     padding: 20px;
 
     border: 1px solid white;
@@ -24,6 +39,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 
     input {
         width: 100%;
@@ -34,7 +50,6 @@ const Container = styled.div`
         box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
         border-radius: 8px;
 
-        margin-bottom: 20px;
         padding-left: 20px;
 
         line-height: 18px;
@@ -46,24 +61,4 @@ const Container = styled.div`
             color: #9c9c9c;
         }
     }
-`;
-
-const Button = styled.div`
-    width: 120px;
-    height: 40px;
-
-    border-radius: 8px;
-    border: 1px solid white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-family: "Krona One", sans-serif;
-    font-size: 15px;
-    color: white;
-
-    background-color: black;
-
-    cursor: pointer;
 `;
