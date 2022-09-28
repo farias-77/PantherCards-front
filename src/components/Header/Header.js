@@ -42,6 +42,8 @@ const HeaderBox = styled.div`
     width: 100%;
     height: 100px;
 
+    border-bottom: 1px solid white;
+
     display: flex;
     justify-content: space-between;
 
