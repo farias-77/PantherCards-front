@@ -4,6 +4,7 @@ import { useState } from "react";
 import "../assets/reset.css";
 import "../assets/styles.css";
 
+import DeckCreation from "./DeckCreation/DeckCreation";
 import Header from "./Header/Header";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./SignUp/SignUp";
@@ -28,6 +29,7 @@ export default function App() {
                 />
                 <Route path="/signUp" element={<SignUp />} />
                 <Route path="/home" element={<Home />} />
+                <Route path="/create" element={<DeckCreation />} />
             </Routes>
         </BrowserRouter>
     );
