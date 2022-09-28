@@ -22,6 +22,10 @@ export default function SignIn({ setDisplayHeader }) {
     });
 
     function submitSignIn() {
+        if (displayLoading) {
+            return;
+        }
+
         const url = "https://superzaprecall.onrender.com/sign-in";
         const promise = axios.post(url, credentials);
         setDisplayLoading(true);

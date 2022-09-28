@@ -24,6 +24,10 @@ export default function SignUp() {
     });
 
     function submitSignUp() {
+        if (displayLoading) {
+            return;
+        }
+
         const url = "https://superzaprecall.onrender.com/sign-up";
         const promise = axios.post(url, credentials);
         setDisplayLoading(true);
