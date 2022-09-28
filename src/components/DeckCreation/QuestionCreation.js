@@ -7,32 +7,26 @@ export default function QuestionCreation({
     questionsArray,
     setQuestionsArray,
 }) {
+    const ONE_SECOND = 1000;
+
     const [questionData, setQuestionData] = useState({
         ...questionsArray[index],
     });
 
-    function saveQuestion() {
+    useEffect(() => {
         setQuestionsArray(
             questionsArray.map((question, questionIndex) =>
                 questionIndex === index ? { ...questionData } : { ...question }
             )
         );
-    }
-
-    function deleteQuestion() {
-        setQuestionsArray(
-            questionsArray.filter(
-                (question, questionIndex) => questionIndex !== index
-            )
-        );
-    }
+    }, [questionData]);
 
     return (
         <Container>
             <p>Pergunta {index + 1}</p>
             <Question>
                 <DebounceInput
-                    debounceTimeout={500}
+                    debounceTimeout={ONE_SECOND}
                     placeholder="Pergunta"
                     value={questionData.question}
                     onChange={(e) =>
@@ -43,7 +37,7 @@ export default function QuestionCreation({
                     }
                 />
                 <DebounceInput
-                    debounceTimeout={500}
+                    debounceTimeout={ONE_SECOND}
                     placeholder="Resposta"
                     value={questionData.answer}
                     onChange={(e) =>
@@ -53,9 +47,6 @@ export default function QuestionCreation({
                         })
                     }
                 />
-                <Controls>
-                    <Button onClick={deleteQuestion}>Apagar</Button>
-                </Controls>
             </Question>
         </Container>
     );
@@ -94,7 +85,7 @@ const Question = styled.div`
         box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
         border-radius: 8px;
 
-        margin-bottom: 20px;
+        margin: 10px 0;
         padding-left: 20px;
 
         line-height: 18px;

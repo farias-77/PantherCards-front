@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Bars } from "react-loader-spinner";
 import styled from "styled-components";
 
@@ -7,6 +7,7 @@ import QuestionCreation from "./QuestionCreation";
 
 export default function DeckCreation() {
     const HALF_SECOND = 500;
+    const newQuestion = useRef();
 
     const [loading, setLoading] = useState(false);
     const [deckName, setDeckName] = useState("");
@@ -22,6 +23,7 @@ export default function DeckCreation() {
                 { question: "", answer: "" },
             ]);
             setLoading(false);
+            newQuestion.current.scrollIntoView({ behavior: "smooth" });
         }, HALF_SECOND);
     }
 
@@ -46,7 +48,7 @@ export default function DeckCreation() {
                         />
                     ))}
 
-                    <NewQuestion onClick={addNewQuestion}>
+                    <NewQuestion onClick={addNewQuestion} ref={newQuestion}>
                         {loading ? (
                             <Bars
                                 height="20"
@@ -64,7 +66,7 @@ export default function DeckCreation() {
 }
 
 const Container = styled.div`
-    width: 100vw;
+    width: 100%;
     height: 100vh;
 
     padding-top: 100px;
