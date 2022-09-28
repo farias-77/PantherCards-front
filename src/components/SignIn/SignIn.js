@@ -107,17 +107,15 @@ const Container = styled.div`
     width: 100vw;
     height: 100vh;
 
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
     display: flex;
     flex-direction: column;
     align-items: center;
 
     background-color: black;
+
+    @media (max-width: 950px) {
+        overflow-y: scroll;
+    }
 `;
 
 const Logo = styled.div`
@@ -142,8 +140,12 @@ const Logo = styled.div`
         text-align: center;
     }
 
-    @media (max-width: 950px) {
+    @media (max-width: 900px) {
         width: 100%;
+
+        h1 {
+            font-size: 17px;
+        }
     }
 `;
 
@@ -178,7 +180,7 @@ const Form = styled.div`
         }
     }
 
-    @media (max-width: 950px) {
+    @media (max-width: 900px) {
         width: 100%;
 
         input {
@@ -209,7 +211,7 @@ const Button = styled.div`
 
     cursor: pointer;
 
-    @media (max-width: 950px) {
+    @media (max-width: 900px) {
         width: 80%;
         height: 40px;
         border-radius: 8px;
@@ -242,4 +244,8 @@ const SignUpLink = styled.div`
     line-height: 18px;
 
     cursor: pointer;
+
+    @media (max-width: 900px) {
+        font-size: 10px;
+    }
 `;

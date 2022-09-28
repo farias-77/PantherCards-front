@@ -156,8 +156,12 @@ const Logo = styled.div`
         text-align: center;
     }
 
-    @media (max-width: 950px) {
+    @media (max-width: 900px) {
         width: 100%;
+
+        h1 {
+            font-size: 17px;
+        }
     }
 `;
 
@@ -192,7 +196,7 @@ const Form = styled.div`
         }
     }
 
-    @media (max-width: 950px) {
+    @media (max-width: 900px) {
         width: 100%;
 
         input {
@@ -223,7 +227,7 @@ const Button = styled.div`
 
     cursor: pointer;
 
-    @media (max-width: 950px) {
+    @media (max-width: 900px) {
         width: 80%;
         height: 40px;
         border-radius: 8px;
@@ -256,4 +260,8 @@ const SignInLink = styled.div`
     line-height: 18px;
 
     cursor: pointer;
+
+    @media (max-width: 900px) {
+        font-size: 10px;
+    }
 `;
