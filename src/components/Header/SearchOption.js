@@ -26,13 +26,17 @@ const Container = styled.div`
 
     &:hover {
         ${(props) =>
-            props.isNotFound
-                ? ""
-                : "cursor: pointer; background-color: #c1c1c1;"}
+            !props.isNotFound
+                ? "cursor: pointer; background-color: #c1c1c1;"
+                : ""}
     }
 
     @media (max-width: 900px) {
         height: 35px;
+        padding: 0 10px;
+
         font-size: 15px;
+
+        ${(props) => (props.isNotFound ? "justify-content: center;" : "")}
     }
 `;

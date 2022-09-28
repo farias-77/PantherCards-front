@@ -1,29 +1,62 @@
+import { DebounceInput } from "react-debounce-input";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { useEffect, useState } from "react";
+
+import SearchOption from "./SearchOption";
 
 export default function SearchMobile() {
-    const [search, setSearch] = useState("");
+    const [displayResults, setDisplayResults] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         if (!search) {
+            setSearchResults([]);
+            setDisplayResults(false);
             return;
         }
 
         const url = `https://superzaprecall.onrender.com/user/${search}`;
-        const promise = axios.get(url); //add token
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        };
+        const promise = axios.get(url, config);
         promise.then((res) => {
             setSearchResults([...res.data]);
+            setDisplayResults(true);
         });
     }, [search]);
 
     return (
         <Container>
-            <input
-                placeholder="Search"
+            <DebounceInput
+                minLength={2}
+                debounceTimeout={300}
                 onChange={(e) => setSearch(e.target.value)}
+                placeholder="Pesquisar usuários"
+                value={search}
             />
+            <Results display={displayResults ? "flex" : "none"}>
+                {searchResults.length > 0 ? (
+                    searchResults.map((result, index) => (
+                        <SearchOption
+                            result={result}
+                            isLastResult={index === searchResults.length - 1}
+                        />
+                    ))
+                ) : (
+                    <SearchOption
+                        result={{
+                            username:
+                                "Não encontramos nenhum usuário com esse nome",
+                        }}
+                        isLastResult={true}
+                    />
+                )}
+            </Results>
         </Container>
     );
 }
@@ -41,6 +74,8 @@ const Container = styled.div`
         align-items: center;
         justify-content: center;
 
+        position: relative;
+
         input {
             width: 100%;
             height: 50px;
@@ -56,9 +91,25 @@ const Container = styled.div`
             font-size: 18px;
             color: #000000;
 
+            z-index: 1;
+
             ::placeholder {
                 color: #9c9c9c;
             }
         }
     }
+`;
+
+const Results = styled.div`
+    width: 100%;
+    padding-top: 30px;
+
+    display: ${(props) => props.display};
+    flex-direction: column;
+
+    position: absolute;
+    top: 50%;
+
+    background-color: #e7e7e7;
+    border-radius: 0 0 8px 8px;
 `;
