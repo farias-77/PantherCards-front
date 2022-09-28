@@ -65,8 +65,18 @@ const Logo = styled.div`
         font-size: 20px;
     }
 
+    @media (max-width: 950px) {
+        h1 {
+            display: none;
+        }
+    }
+
     @media (max-width: 900px) {
         width: 50%;
+
+        h1 {
+            display: block;
+        }
 
         img {
             width: 80px;
