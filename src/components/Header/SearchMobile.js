@@ -78,7 +78,7 @@ const Container = styled.div`
 
         input {
             width: 100%;
-            height: 50px;
+            height: 40px;
 
             background: #ffffff;
             border: 1px solid rgba(120, 177, 89, 0.25);
