@@ -11,7 +11,6 @@ export default function DeckCard({ deck, username }) {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     function navigateToDeck() {
-        return;
         navigate(`/deck/${deck.id}`);
     }
 
@@ -37,17 +36,19 @@ export default function DeckCard({ deck, username }) {
     }
 
     return (
-        <Container onClick={navigateToDeck}>
-            <DeckInfo>
+        <Container>
+            <Deck onClick={navigateToDeck}>
+                <h3>{deck.name}</h3>
+                <h4>by {username}</h4>
+            </Deck>
+            <Controls>
                 {Number(deck.userId) ===
                 Number(localStorage.getItem("userId")) ? (
                     <AiFillDelete onClick={openDeleteConfirm} />
                 ) : (
                     <></>
                 )}
-                <h3>{deck.name}</h3>
-                <h4>by {username}</h4>
-            </DeckInfo>
+            </Controls>
             <Modal
                 isOpen={modalIsOpen}
                 contentLabel="Loading modal"
@@ -71,42 +72,31 @@ export default function DeckCard({ deck, username }) {
 const Container = styled.div`
     width: 60%;
 
-    padding: 20px;
-    margin-bottom: 30px;
+    display: flex;
 
     background-color: black;
     border: 1px solid white;
     border-radius: 8px;
 
-    position: relative;
-
-    cursor: pointer;
-
-    @media (max-width: 900px) {
-        width: 100%;
-    }
+    margin-bottom: 30px;
 `;
 
-const DeckInfo = styled.div`
-    width: 100%;
+const Deck = styled.div`
+    width: 90%;
     height: 100%;
 
-    font-family: "Krona One", sans-serif;
+    padding: 20px;
 
+    font-family: "Krona One", sans-serif;
+    position: relative;
     overflow: hidden;
 
-    svg {
-        color: white;
-        font-size: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
 
-        position: absolute;
-        right: 10px;
-        top: 10px;
-
-        z-index: 1;
-
-        cursor: pointer;
-    }
+    cursor: pointer;
 
     h3 {
         margin-bottom: 15px;
@@ -123,6 +113,10 @@ const DeckInfo = styled.div`
         h3 {
             font-size: 18px;
         }
+    }
+
+    @media (max-width: 900px) {
+        width: 100%;
     }
 `;
 
@@ -148,5 +142,27 @@ const Button = styled.div`
 
     svg {
         font-size: 25px;
+    }
+`;
+
+const Controls = styled.div`
+    width: 10%;
+    height: 100%;
+
+    background-color: black;
+
+    position: relative;
+
+    svg {
+        color: white;
+        font-size: 25px;
+
+        position: absolute;
+        right: 10px;
+        top: 10px;
+
+        z-index: 1;
+
+        cursor: pointer;
     }
 `;
