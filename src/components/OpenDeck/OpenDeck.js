@@ -61,6 +61,7 @@ export default function OpenDeck() {
                     <h4>{deck.user ? "by " + deck.user.username : ""}</h4>
                 </Title>
                 {deck.questions ? renderQuestions() : <></>}
+                <Button>Voltar para o menu</Button>
             </QuestionPage>
             <Modal
                 isOpen={modalIsOpen}
@@ -84,12 +85,13 @@ const Container = styled.div`
     justify-content: center;
 
     @media (max-width: 900px) {
-        padding: 100px 0;
+        padding-top: 100px;
     }
 `;
 
 const QuestionPage = styled.div`
     width: 100%;
+    height: 100%;
     max-width: 1000px;
 
     padding-top: 100px;
@@ -140,5 +142,33 @@ const Title = styled.div`
         h4 {
             font-size: 13px;
         }
+    }
+`;
+
+const Button = styled.div`
+    margin-top: 15px;
+
+    width: 200px;
+    height: 40px;
+
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 6px;
+
+    color: white;
+    font-size: 18px;
+    line-height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    @media (max-width: 900px) {
+        width: calc(100% - 60px);
+
+        font-size: 15px;
+        height: 40px;
     }
 `;

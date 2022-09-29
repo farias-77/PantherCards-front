@@ -53,7 +53,8 @@ export default function QuestionBody({
 
 const Body = styled.div`
     width: 60%;
-    height: 600px;
+    height: 80%;
+    max-height: 600px;
 
     margin-top: 30px;
 
@@ -89,7 +90,6 @@ const Body = styled.div`
     @media (max-width: 900px) {
         flex-direction: column;
         width: 100%;
-        height: 450px;
     }
 `;
 
@@ -139,7 +139,7 @@ const QuestionData = styled.div`
 
     @media (max-width: 900px) {
         h2 {
-            font-size: 25px;
+            font-size: 22px;
         }
     }
 `;

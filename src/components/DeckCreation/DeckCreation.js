@@ -8,8 +8,6 @@ import axios from "axios";
 import DeckTitleCreation from "./DeckTitleCreation";
 import QuestionCreation from "./QuestionCreation";
 
-Modal.setAppElement(".root");
-
 export default function DeckCreation() {
     const ONE_SECOND = 1000;
     const newQuestion = useRef();
@@ -23,6 +21,14 @@ export default function DeckCreation() {
     const [questionsArray, setQuestionsArray] = useState([
         { question: "", answer: "" },
     ]);
+
+    function navigateHome() {
+        setModalIsOpen(true);
+        setTimeout(() => {
+            navigate("/home");
+            setModalIsOpen(false);
+        }, ONE_SECOND);
+    }
 
     function addNewQuestion() {
         if (loadingNewQuestion) {
@@ -145,6 +151,9 @@ export default function DeckCreation() {
                     <ErrorMessage>{questionsError}</ErrorMessage>
 
                     <Controls>
+                        <Button onClick={navigateHome}>
+                            Voltar para o menu
+                        </Button>
                         <Button onClick={addNewQuestion} ref={newQuestion}>
                             {loadingNewQuestion ? (
                                 <Bars

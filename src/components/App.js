@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import Modal from "react-modal";
 
 import "../assets/reset.css";
 import "../assets/styles.css";
@@ -11,6 +12,8 @@ import SignIn from "./SignIn/SignIn";
 import SignUp from "./SignUp/SignUp";
 import Home from "./Home/Home";
 import UserPage from "./UserPage/UserPage";
+
+Modal.setAppElement(".root");
 
 export default function App() {
     const [displayHeader, setDisplayHeader] = useState(
