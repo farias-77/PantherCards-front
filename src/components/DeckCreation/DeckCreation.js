@@ -180,6 +180,10 @@ const Container = styled.div`
 
     display: flex;
     justify-content: center;
+
+    @media (max-width: 900px) {
+        padding: 60px 0;
+    }
 `;
 
 const CreationPage = styled.div`

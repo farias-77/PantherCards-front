@@ -83,7 +83,7 @@ const Container = styled.div`
     justify-content: center;
 
     @media (max-width: 900px) {
-        margin: 100px 0;
+        padding: 100px 0;
     }
 `;
 

@@ -86,7 +86,7 @@ const Container = styled.div`
     justify-content: center;
 
     @media (max-width: 900px) {
-        padding-bottom: 100px;
+        padding: 100px 0;
     }
 `;
 
