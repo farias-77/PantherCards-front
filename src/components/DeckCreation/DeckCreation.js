@@ -11,13 +11,15 @@ import QuestionCreation from "./QuestionCreation";
 Modal.setAppElement(".root");
 
 export default function DeckCreation() {
-    const HALF_SECOND = 500;
+    const ONE_SECOND = 1000;
     const newQuestion = useRef();
     const navigate = useNavigate();
 
-    const [modalIsOpen, setModalIsOpen] = useState(false);
     const [loadingNewQuestion, setLoadingNewQuestion] = useState(false);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
     const [deckName, setDeckName] = useState("");
+    const [deckNameError, setDeckNameError] = useState("");
+    const [questionsError, setQuestionsError] = useState("");
     const [questionsArray, setQuestionsArray] = useState([
         { question: "", answer: "" },
     ]);
@@ -35,7 +37,7 @@ export default function DeckCreation() {
             ]);
             setLoadingNewQuestion(false);
             newQuestion.current.scrollIntoView({ behavior: "smooth" });
-        }, HALF_SECOND);
+        }, ONE_SECOND / 2);
     }
 
     function postDeck() {
@@ -43,9 +45,28 @@ export default function DeckCreation() {
             return;
         }
 
+        const filteredQuestions = filterEmptyQuestions();
         setModalIsOpen(true);
+        setDeckNameError("");
+        setQuestionsError("");
 
-        const filteredArray = filterEmptyQuestions();
+        if (deckName === "") {
+            setTimeout(() => {
+                setModalIsOpen(false);
+                setDeckNameError("Por favor, insira um nome para o deck");
+            }, ONE_SECOND);
+            return;
+        }
+
+        if (filteredQuestions.length === 0) {
+            setTimeout(() => {
+                setModalIsOpen(false);
+                setQuestionsError(
+                    "Você deve enviar no mínimo uma pergunta, perguntas com campos em branco são desconsideradas"
+                );
+            }, ONE_SECOND);
+            return;
+        }
 
         const url = "https://superzaprecall.onrender.com/deck";
         const config = {
@@ -57,10 +78,16 @@ export default function DeckCreation() {
 
         const promise = axios.post(url, body, config);
 
-        promise.then((res) => {
-            const deckId = res.data.id;
-            insertQuestions(filteredArray, deckId);
-        });
+        promise
+            .then((res) => {
+                const deckId = res.data.id;
+                insertQuestions(filteredQuestions, deckId);
+                setDeckNameError("");
+            })
+            .catch((err) => {
+                setDeckNameError(err.response.data);
+                setModalIsOpen(false);
+            });
     }
 
     function filterEmptyQuestions() {
@@ -82,10 +109,15 @@ export default function DeckCreation() {
 
         const promise = axios.post(url, body, config);
 
-        promise.then(() => {
-            setModalIsOpen(false);
-            navigate("/home");
-        });
+        promise
+            .then(() => {
+                setModalIsOpen(false);
+                setQuestionsError("");
+                navigate("/home");
+            })
+            .catch((err) => {
+                setModalIsOpen(false);
+            });
     }
 
     return (
@@ -99,6 +131,7 @@ export default function DeckCreation() {
                         deckName={deckName}
                         setDeckName={setDeckName}
                     />
+                    <ErrorMessage>{deckNameError}</ErrorMessage>
 
                     {questionsArray.map((question, index) => (
                         <QuestionCreation
@@ -108,6 +141,8 @@ export default function DeckCreation() {
                             index={index}
                         />
                     ))}
+
+                    <ErrorMessage>{questionsError}</ErrorMessage>
 
                     <Controls>
                         <Button onClick={addNewQuestion} ref={newQuestion}>
@@ -184,6 +219,18 @@ const Content = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+`;
+
+const ErrorMessage = styled.div`
+    width: 60%;
+    margin-top: 15px;
+
+    font-family: "Krona One", sans-serif;
+    color: white;
+    font-size: 13px;
+    line-height: 16px;
+
+    text-align: center;
 `;
 
 const Button = styled.div`
