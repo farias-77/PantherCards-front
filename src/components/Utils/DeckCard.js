@@ -95,6 +95,7 @@ export default function DeckCard({ deck, username, setRefresh }) {
 
 const Container = styled.div`
     width: 60%;
+    max-width: 600px;
 
     display: flex;
 
@@ -103,6 +104,10 @@ const Container = styled.div`
     border-radius: 8px;
 
     margin-bottom: 30px;
+
+    @media (max-width: 900px) {
+        width: 100%;
+    }
 `;
 
 const Deck = styled.div`
@@ -137,10 +142,6 @@ const Deck = styled.div`
         h3 {
             font-size: 18px;
         }
-    }
-
-    @media (max-width: 900px) {
-        width: 100%;
     }
 `;
 

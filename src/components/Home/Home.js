@@ -105,7 +105,7 @@ const Container = styled.div`
 
 const HomePage = styled.div`
     width: 100%;
-    max-width: 1000px;
+    max-width: 900px;
 
     padding-top: 100px;
 
@@ -121,6 +121,7 @@ const HomePage = styled.div`
 
 const Title = styled.div`
     width: 60%;
+    max-width: 600px;
 
     display: flex;
     justify-content: space-between;
