@@ -58,14 +58,17 @@ export default function Home() {
 }
 
 const Container = styled.div`
-    width: 100vw;
+    width: 100%;
     height: 100vh;
 
     padding-top: 100px;
-    margin-bottom: 100px;
 
     display: flex;
     justify-content: center;
+
+    @media (max-width: 900px) {
+        padding-bottom: 100px;
+    }
 `;
 
 const HomePage = styled.div`
