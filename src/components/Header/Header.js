@@ -1,4 +1,5 @@
 import logo from "../../assets/logoPanther.png";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import SearchMobile from "./SearchMobile";
@@ -6,10 +7,16 @@ import Search from "./Search";
 import Logout from "./Logout";
 
 export default function Header({ setDisplayHeader }) {
+    const navigate = useNavigate();
+
+    function navigateHome() {
+        navigate("/home");
+    }
+
     return (
         <Container>
             <HeaderBox>
-                <Logo>
+                <Logo onClick={navigateHome}>
                     <img src={logo} alt="logo" />
                     <h1>PantherCards</h1>
                 </Logo>
@@ -59,6 +66,8 @@ const Logo = styled.div`
     justify-content: flex-start;
 
     position: relative;
+
+    cursor: pointer;
 
     img {
         width: 90px;
