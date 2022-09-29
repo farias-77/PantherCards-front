@@ -3,10 +3,13 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
+import DeckCard from "./DeckCard";
+
 export default function Home() {
     const navigate = useNavigate();
 
     const [decks, setDecks] = useState([]);
+    const [username, setUsername] = useState("");
 
     useEffect(() => {
         const url = `https://superzaprecall.onrender.com/deck/user/${localStorage.getItem(
@@ -22,6 +25,7 @@ export default function Home() {
 
         promise.then((res) => {
             setDecks([...res.data.decks]);
+            setUsername(res.data.username);
         });
     }, []);
 
@@ -38,7 +42,9 @@ export default function Home() {
                 </Title>
                 <Content>
                     {decks.length > 0 ? (
-                        <></>
+                        decks.map((deck) => (
+                            <DeckCard deck={deck} username={username} />
+                        ))
                     ) : (
                         <h5>
                             Você ainda não tem nenhum deck, crie clicando em
@@ -102,10 +108,18 @@ const Button = styled.div`
 const Content = styled.div`
     width: 100%;
 
+    padding-top: 50px;
+
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
     > h5 {
+        width: 100%;
+        height: 100%;
+
+        text-align: center;
+
         color: white;
         font-size: 20px;
 
