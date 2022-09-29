@@ -54,13 +54,32 @@ export default function OpenDeck() {
                     </h2>
 
                     <Controls>
-                        <IoIosArrowBack />
+                        {index !== 0 ? (
+                            <IoIosArrowBack
+                                onClick={() => {
+                                    setQuestionFocus(questionFocus - 1);
+                                    setDisplayAnswer(false);
+                                }}
+                            />
+                        ) : (
+                            <></>
+                        )}
                         <Button
                             onClick={() => setDisplayAnswer(!displayAnswer)}
                         >
                             Exibir {displayAnswer ? "Pergunta" : "Resposta"}
                         </Button>
-                        <IoIosArrowForward />
+
+                        {index !== deck.questions.length - 1 ? (
+                            <IoIosArrowForward
+                                onClick={() => {
+                                    setQuestionFocus(questionFocus + 1);
+                                    setDisplayAnswer(false);
+                                }}
+                            />
+                        ) : (
+                            <></>
+                        )}
                     </Controls>
                 </QuestionData>
             </Body>
@@ -236,10 +255,10 @@ const QuestionData = styled.div`
 `;
 
 const Controls = styled.div`
-    width: 60%;
+    width: 100%;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 
     svg {
         color: white;
@@ -263,6 +282,8 @@ const Controls = styled.div`
 const Button = styled.div`
     width: 200px;
     height: 40px;
+
+    margin: 0 15px;
 
     border-radius: 8px;
     border: 1px solid white;
