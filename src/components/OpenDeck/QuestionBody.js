@@ -9,8 +9,18 @@ export default function QuestionBody({
     question,
     questionFocus,
     setQuestionFocus,
+    setModalIsOpen,
 }) {
     const [displayAnswer, setDisplayAnswer] = useState(false);
+    const ONE_SECOND = 1000;
+
+    function changeQuestion(next) {
+        setModalIsOpen(true);
+        setTimeout(() => setModalIsOpen(false), ONE_SECOND / 2);
+
+        setQuestionFocus(questionFocus + next);
+        setDisplayAnswer(false);
+    }
 
     return (
         <Body>
@@ -21,12 +31,7 @@ export default function QuestionBody({
 
                 <Controls>
                     {index !== 0 ? (
-                        <IoIosArrowBack
-                            onClick={() => {
-                                setQuestionFocus(questionFocus - 1);
-                                setDisplayAnswer(false);
-                            }}
-                        />
+                        <IoIosArrowBack onClick={() => changeQuestion(-1)} />
                     ) : (
                         <FakeControlDiv></FakeControlDiv>
                     )}
@@ -35,12 +40,7 @@ export default function QuestionBody({
                     </Button>
 
                     {index !== deck.questions.length - 1 ? (
-                        <IoIosArrowForward
-                            onClick={() => {
-                                setQuestionFocus(questionFocus + 1);
-                                setDisplayAnswer(false);
-                            }}
-                        />
+                        <IoIosArrowForward onClick={() => changeQuestion(1)} />
                     ) : (
                         <FakeControlDiv></FakeControlDiv>
                     )}

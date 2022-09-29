@@ -48,6 +48,7 @@ export default function OpenDeck() {
                 questionFocus={questionFocus}
                 setQuestionFocus={setQuestionFocus}
                 deck={deck}
+                setModalIsOpen={setModalIsOpen}
             />
         );
     }
