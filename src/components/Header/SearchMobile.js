@@ -46,6 +46,7 @@ export default function SearchMobile({ setRefresh }) {
                             setRefresh={setRefresh}
                             result={result}
                             isLastResult={index === searchResults.length - 1}
+                            setSearch={setSearch}
                         />
                     ))
                 ) : (

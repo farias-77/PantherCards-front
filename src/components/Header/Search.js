@@ -48,6 +48,7 @@ export default function Search({ setRefresh }) {
                             isLastResult={index === searchResults.length - 1}
                             setDisplayResults={setDisplayResults}
                             setRefresh={setRefresh}
+                            setSearch={setSearch}
                         />
                     ))
                 ) : (

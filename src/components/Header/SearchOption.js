@@ -9,6 +9,7 @@ export default function SearchOption({
     isLastResult,
     setDisplayResults,
     setRefresh,
+    setSearch,
 }) {
     const navigate = useNavigate();
     const HALF_SECOND = 500;
@@ -18,8 +19,10 @@ export default function SearchOption({
         if (!result.id) {
             return;
         }
-        setDisplayResults(false);
         setModalIsOpen(true);
+        setDisplayResults(false);
+        setSearch("");
+
         setTimeout(() => {
             navigate(`/user/${result.id}`);
             setRefresh((refresh) => !refresh);
