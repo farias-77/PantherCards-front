@@ -139,6 +139,12 @@ const QuestionData = styled.div`
 
     @media (max-width: 900px) {
         h2 {
+            font-size: 26px;
+        }
+    }
+
+    @media (max-width: 500px) {
+        h2 {
             font-size: 22px;
         }
     }

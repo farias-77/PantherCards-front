@@ -77,7 +77,7 @@ export default function DeckCard({ deck, username, setRefresh }) {
                     <Bars height="60" color="white" ariaLabel="Loading..." />
                 ) : (
                     <>
-                        <h2>Tem certeza que deseja apagar?</h2>
+                        <h2>Tem certeza que deseja apagar o deck?</h2>
                         <div>
                             <Button onClick={closeDeleteConfirm}>
                                 <AiOutlineClose />
