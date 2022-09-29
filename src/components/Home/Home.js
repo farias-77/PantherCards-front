@@ -1,15 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Bars } from "react-loader-spinner";
 import styled from "styled-components";
+import Modal from "react-modal";
 import axios from "axios";
 
 import DeckCard from "./DeckCard";
 
 export default function Home() {
     const navigate = useNavigate();
+    const ONE_SECOND = 1000;
 
-    const [decks, setDecks] = useState([]);
     const [username, setUsername] = useState("");
+    const [decks, setDecks] = useState([]);
+    const [modalIsOpen, setModalIsOpen] = useState(true);
 
     useEffect(() => {
         const url = `https://superzaprecall.onrender.com/deck/user/${localStorage.getItem(
@@ -24,8 +28,11 @@ export default function Home() {
         const promise = axios.get(url, config);
 
         promise.then((res) => {
-            setDecks([...res.data.decks]);
-            setUsername(res.data.username);
+            setTimeout(() => {
+                setDecks([...res.data.decks]);
+                setUsername(res.data.username);
+                setModalIsOpen(false);
+            }, ONE_SECOND / 3);
         });
     }, []);
 
@@ -41,7 +48,7 @@ export default function Home() {
                     <Button onClick={navigateToDeckCreation}>Novo deck</Button>
                 </Title>
                 <Content>
-                    {decks.length > 0 ? (
+                    {decks.length > 0 || modalIsOpen ? (
                         decks.map((deck) => (
                             <DeckCard deck={deck} username={username} />
                         ))
@@ -53,6 +60,14 @@ export default function Home() {
                     )}
                 </Content>
             </HomePage>
+            <Modal
+                isOpen={modalIsOpen}
+                contentLabel="Loading modal"
+                overlayClassName="modal-overlay"
+                className="modal-content"
+            >
+                <Bars height="60" color="white" ariaLabel="Loading..." />
+            </Modal>
         </Container>
     );
 }
@@ -72,7 +87,8 @@ const Container = styled.div`
 `;
 
 const HomePage = styled.div`
-    width: 50%;
+    width: 100%;
+    max-width: 1000px;
 
     padding-top: 100px;
 
@@ -81,7 +97,6 @@ const HomePage = styled.div`
     align-items: center;
 
     @media (max-width: 900px) {
-        width: 100%;
         padding: 45px;
         padding-top: 60px;
     }
