@@ -1,20 +1,24 @@
-import { useNavigate } from "react-router-dom";
 import { AiFillDelete, AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
+import { Bars } from "react-loader-spinner";
 import styled from "styled-components";
 import { useState } from "react";
 import Modal from "react-modal";
 import axios from "axios";
 
-export default function DeckCard({ deck, username }) {
+export default function DeckCard({ deck, username, setRefresh }) {
     const navigate = useNavigate();
-
+    const ONE_SECOND = 1000;
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [displayLoading, setDisplayLoading] = useState(false);
 
     function navigateToDeck() {
         navigate(`/deck/${deck.id}`);
     }
 
     function deleteDeck() {
+        setDisplayLoading(true);
+
         const url = `https://superzaprecall.onrender.com/deck/${deck.id}`;
         const config = {
             headers: {
@@ -24,10 +28,24 @@ export default function DeckCard({ deck, username }) {
 
         const promise = axios.delete(url, config);
 
-        promise.then((res) => {}).catch(() => {});
+        promise
+            .then((res) => {
+                setTimeout(() => {
+                    setRefresh((refresh) => !refresh);
+                    setDisplayLoading(false);
+                    setModalIsOpen(false);
+                }, ONE_SECOND);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }
 
     function openDeleteConfirm() {
+        if (modalIsOpen) {
+            return;
+        }
+
         setModalIsOpen(true);
     }
 
@@ -55,15 +73,21 @@ export default function DeckCard({ deck, username }) {
                 overlayClassName="modal-overlay"
                 className="modal-delete"
             >
-                <h2>Tem certeza que deseja apagar?</h2>
-                <div>
-                    <Button onClick={closeDeleteConfirm}>
-                        <AiOutlineClose />
-                    </Button>
-                    <Button onClick={deleteDeck}>
-                        <AiOutlineCheck />
-                    </Button>
-                </div>
+                {displayLoading ? (
+                    <Bars height="60" color="white" ariaLabel="Loading..." />
+                ) : (
+                    <>
+                        <h2>Tem certeza que deseja apagar?</h2>
+                        <div>
+                            <Button onClick={closeDeleteConfirm}>
+                                <AiOutlineClose />
+                            </Button>
+                            <Button onClick={deleteDeck}>
+                                <AiOutlineCheck />
+                            </Button>
+                        </div>
+                    </>
+                )}
             </Modal>
         </Container>
     );

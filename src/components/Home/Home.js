@@ -14,8 +14,13 @@ export default function Home({ setDisplayHeader }) {
     const [username, setUsername] = useState("");
     const [decks, setDecks] = useState([]);
     const [modalIsOpen, setModalIsOpen] = useState(true);
+    const [refresh, setRefresh] = useState(true);
 
     useEffect(() => {
+        if (!modalIsOpen) {
+            setModalIsOpen(true);
+        }
+
         const url = `https://superzaprecall.onrender.com/deck/user/${localStorage.getItem(
             "userId"
         )}`;
@@ -41,7 +46,7 @@ export default function Home({ setDisplayHeader }) {
                 setDisplayHeader(false);
                 navigate("/");
             });
-    }, []);
+    }, [refresh]);
 
     function navigateToDeckCreation() {
         navigate("/create");
@@ -61,6 +66,7 @@ export default function Home({ setDisplayHeader }) {
                                 deck={deck}
                                 username={username}
                                 key={index}
+                                setRefresh={setRefresh}
                             />
                         ))
                     ) : (
