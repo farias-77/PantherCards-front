@@ -76,23 +76,40 @@ const HomePage = styled.div`
 
     padding-top: 100px;
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     @media (max-width: 900px) {
         width: 100%;
-        padding: 25px;
+        padding: 45px;
         padding-top: 60px;
     }
 `;
 
 const Title = styled.div`
-    width: 100%;
+    width: 60%;
 
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     h3 {
         font-family: "Krona One", sans-serif;
         color: white;
         font-size: 30px;
+    }
+
+    @media (max-width: 900px) {
+        width: 100%;
+    }
+
+    @media (max-width: 500px) {
+        font-size: 13px;
+
+        h3 {
+            font-size: 16px;
+        }
     }
 `;
 
@@ -108,6 +125,7 @@ const Button = styled.div`
     justify-content: center;
 
     font-family: "Krona One", sans-serif;
+    text-align: center;
     color: white;
 
     background-color: black;
@@ -121,8 +139,8 @@ const Content = styled.div`
     padding-top: 50px;
 
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
 
     > h5 {
         width: 100%;

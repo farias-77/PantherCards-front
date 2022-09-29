@@ -12,7 +12,7 @@ export default function DeckCard({ deck, username }) {
 }
 
 const Container = styled.div`
-    width: 30%;
+    width: 60%;
 
     padding: 20px;
     margin-bottom: 30px;
@@ -34,6 +34,8 @@ const DeckInfo = styled.div`
 
     font-family: "Krona One", sans-serif;
 
+    overflow: hidden;
+
     h3 {
         margin-bottom: 15px;
         font-size: 20px;
@@ -43,5 +45,11 @@ const DeckInfo = styled.div`
     h4 {
         font-size: 13px;
         color: grey;
+    }
+
+    @media (max-width: 500px) {
+        h3 {
+            font-size: 18px;
+        }
     }
 `;
