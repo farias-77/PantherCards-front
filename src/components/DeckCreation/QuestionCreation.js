@@ -53,7 +53,8 @@ export default function QuestionCreation({
 }
 
 const Container = styled.div`
-    width: 60%;
+    width: 85%;
+    max-width: 400px;
 
     p {
         font-family: "Krona One", sans-serif;
@@ -64,8 +65,6 @@ const Container = styled.div`
     }
 
     @media (max-width: 900px) {
-        width: 85%;
-
         p {
             font-size: 13px;
         }
@@ -118,33 +117,4 @@ const Question = styled.div`
             padding-left: 10px;
         }
     }
-`;
-
-const Controls = styled.div`
-    width: 100%;
-
-    display: flex;
-    justify-content: center;
-`;
-
-const Button = styled.div`
-    width: 120px;
-    height: 40px;
-
-    margin: 0 10px;
-
-    border-radius: 8px;
-    border: 1px solid white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-family: "Krona One", sans-serif;
-    font-size: 15px;
-    color: white;
-
-    background-color: black;
-
-    cursor: pointer;
 `;

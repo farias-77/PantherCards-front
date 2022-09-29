@@ -151,9 +151,6 @@ export default function DeckCreation() {
                     <ErrorMessage>{questionsError}</ErrorMessage>
 
                     <Controls>
-                        <Button onClick={navigateHome}>
-                            Voltar para o menu
-                        </Button>
                         <Button onClick={addNewQuestion} ref={newQuestion}>
                             {loadingNewQuestion ? (
                                 <Bars
@@ -164,6 +161,9 @@ export default function DeckCreation() {
                             ) : (
                                 "Adicionar pergunta"
                             )}
+                        </Button>
+                        <Button onClick={navigateHome}>
+                            Voltar para o menu
                         </Button>
                         <Button onClick={postDeck}>Enviar perguntas</Button>
                     </Controls>
@@ -247,17 +247,16 @@ const ErrorMessage = styled.div`
 `;
 
 const Button = styled.div`
-    margin-right: 10px;
-
-    width: 180px;
-    height: 40px;
+    width: 30%;
+    height: 50px;
 
     background-color: black;
     border: 1px solid white;
     border-radius: 10px;
 
     color: white;
-    font-size: 18px;
+    font-size: 16px;
+    text-align: center;
 
     display: flex;
     align-items: center;
@@ -266,15 +265,17 @@ const Button = styled.div`
     cursor: pointer;
 
     @media (max-width: 900px) {
-        margin-bottom: 10px;
+        margin-bottom: 15px;
+        width: 45%;
     }
 `;
 
 const Controls = styled.div`
-    width: 100%;
+    width: 85%;
+    max-width: 400px;
 
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 
     margin-top: 20px;
     margin-bottom: 100px;

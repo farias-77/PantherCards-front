@@ -18,7 +18,8 @@ export default function DeckTitleCreation({ deckName, setDeckName }) {
 }
 
 const Container = styled.div`
-    width: 60%;
+    width: 85%;
+    max-width: 400px;
 
     p {
         font-family: "Krona One", sans-serif;
