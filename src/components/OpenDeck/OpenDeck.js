@@ -62,7 +62,7 @@ export default function OpenDeck() {
                                 }}
                             />
                         ) : (
-                            <></>
+                            <FakeControlDiv></FakeControlDiv>
                         )}
                         <Button
                             onClick={() => setDisplayAnswer(!displayAnswer)}
@@ -78,7 +78,7 @@ export default function OpenDeck() {
                                 }}
                             />
                         ) : (
-                            <></>
+                            <FakeControlDiv></FakeControlDiv>
                         )}
                     </Controls>
                 </QuestionData>
@@ -299,4 +299,9 @@ const Button = styled.div`
     background-color: black;
 
     cursor: pointer;
+`;
+
+const FakeControlDiv = styled.div`
+    width: 40px;
+    height: 40px;
 `;
