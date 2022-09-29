@@ -7,6 +7,7 @@ export default function Logout({ setDisplayHeader }) {
 
     function logout() {
         localStorage.removeItem("token");
+        localStorage.removeItem("userId");
         setDisplayHeader(false);
         navigate("/");
     }
