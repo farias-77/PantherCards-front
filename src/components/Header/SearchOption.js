@@ -19,12 +19,15 @@ export default function SearchOption({
         if (!result.id) {
             return;
         }
+
         setModalIsOpen(true);
         setDisplayResults(false);
         setSearch("");
 
         setTimeout(() => {
-            navigate(`/user/${result.id}`);
+            Number(result.id) === Number(localStorage.getItem("userId"))
+                ? navigate("/home")
+                : navigate(`/user/${result.id}`);
             setRefresh((refresh) => !refresh);
             setModalIsOpen(false);
         }, HALF_SECOND);
