@@ -32,7 +32,7 @@ export default function Home() {
                 setDecks([...res.data.decks]);
                 setUsername(res.data.username);
                 setModalIsOpen(false);
-            }, ONE_SECOND / 3);
+            }, ONE_SECOND / 6);
         });
     }, []);
 
@@ -80,7 +80,7 @@ const Container = styled.div`
     width: 100%;
     height: 100vh;
 
-    padding-top: 100px;
+    padding-top: 30px;
 
     display: flex;
     justify-content: center;

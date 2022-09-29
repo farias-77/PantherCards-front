@@ -176,7 +176,7 @@ const Container = styled.div`
     width: 100%;
     height: 100vh;
 
-    padding-top: 70px;
+    padding-top: 30px;
 
     display: flex;
     justify-content: center;
