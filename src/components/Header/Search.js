@@ -5,7 +5,7 @@ import axios from "axios";
 
 import SearchOption from "./SearchOption";
 
-export default function Search() {
+export default function Search({ setRefresh }) {
     const [displayResults, setDisplayResults] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
     const [search, setSearch] = useState("");
@@ -43,8 +43,11 @@ export default function Search() {
                 {searchResults.length > 0 ? (
                     searchResults.map((result, index) => (
                         <SearchOption
+                            key={index}
                             result={result}
                             isLastResult={index === searchResults.length - 1}
+                            setDisplayResults={setDisplayResults}
+                            setRefresh={setRefresh}
                         />
                     ))
                 ) : (

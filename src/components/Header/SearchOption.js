@@ -4,7 +4,12 @@ import styled from "styled-components";
 import { useState } from "react";
 import Modal from "react-modal";
 
-export default function SearchOption({ result, isLastResult }) {
+export default function SearchOption({
+    result,
+    isLastResult,
+    setDisplayResults,
+    setRefresh,
+}) {
     const navigate = useNavigate();
     const HALF_SECOND = 500;
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -13,10 +18,11 @@ export default function SearchOption({ result, isLastResult }) {
         if (!result.id) {
             return;
         }
-
+        setDisplayResults(false);
         setModalIsOpen(true);
         setTimeout(() => {
             navigate(`/user/${result.id}`);
+            setRefresh((refresh) => !refresh);
             setModalIsOpen(false);
         }, HALF_SECOND);
     }

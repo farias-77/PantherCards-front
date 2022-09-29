@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Bars } from "react-loader-spinner";
 import styled from "styled-components";
@@ -7,18 +7,18 @@ import axios from "axios";
 
 import DeckCard from "../Utils/DeckCard";
 
-export default function Home({ setDisplayHeader }) {
+export default function UserPage({ setDisplayHeader, refresh }) {
     const navigate = useNavigate();
+    const { userId } = useParams();
     const ONE_SECOND = 1000;
 
+    const [modalIsOpen, setModalIsOpen] = useState(true);
     const [username, setUsername] = useState("");
     const [decks, setDecks] = useState([]);
-    const [modalIsOpen, setModalIsOpen] = useState(true);
 
     useEffect(() => {
-        const url = `https://superzaprecall.onrender.com/deck/user/${localStorage.getItem(
-            "userId"
-        )}`;
+        setModalIsOpen(true);
+        const url = `https://superzaprecall.onrender.com/deck/user/${userId}`;
         const config = {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -41,18 +41,13 @@ export default function Home({ setDisplayHeader }) {
                 setDisplayHeader(false);
                 navigate("/");
             });
-    }, []);
-
-    function navigateToDeckCreation() {
-        navigate("/create");
-    }
+    }, [refresh]);
 
     return (
         <Container>
             <HomePage>
                 <Title>
-                    <h3>Seus decks</h3>
-                    <Button onClick={navigateToDeckCreation}>Novo deck</Button>
+                    <h3>{username}</h3>
                 </Title>
                 <Content>
                     {decks.length > 0 || modalIsOpen ? (
@@ -64,10 +59,7 @@ export default function Home({ setDisplayHeader }) {
                             />
                         ))
                     ) : (
-                        <h5>
-                            Você ainda não tem nenhum deck, crie clicando em
-                            "Novo deck"
-                        </h5>
+                        <h5>Este usuário ainda não tem nenhum deck</h5>
                     )}
                 </Content>
             </HomePage>

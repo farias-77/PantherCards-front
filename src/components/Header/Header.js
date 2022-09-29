@@ -6,7 +6,7 @@ import SearchMobile from "./SearchMobile";
 import Search from "./Search";
 import Logout from "./Logout";
 
-export default function Header({ setDisplayHeader }) {
+export default function Header({ setDisplayHeader, setRefresh }) {
     const navigate = useNavigate();
 
     function navigateHome() {
@@ -20,10 +20,10 @@ export default function Header({ setDisplayHeader }) {
                     <img src={logo} alt="logo" />
                     <h1>PantherCards</h1>
                 </Logo>
-                <Search />
+                <Search setRefresh={setRefresh} />
                 <Logout setDisplayHeader={setDisplayHeader} />
             </HeaderBox>
-            <SearchMobile />
+            <SearchMobile setRefresh={setRefresh} />
         </Container>
     );
 }
