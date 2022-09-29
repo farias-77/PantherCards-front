@@ -27,13 +27,19 @@ export default function Home() {
 
         const promise = axios.get(url, config);
 
-        promise.then((res) => {
-            setTimeout(() => {
-                setDecks([...res.data.decks]);
-                setUsername(res.data.username);
-                setModalIsOpen(false);
-            }, ONE_SECOND / 6);
-        });
+        promise
+            .then((res) => {
+                setTimeout(() => {
+                    setDecks([...res.data.decks]);
+                    setUsername(res.data.username);
+                    setModalIsOpen(false);
+                }, ONE_SECOND / 6);
+            })
+            .catch(() => {
+                localStorage.removeItem("token");
+                localStorage.removeItem("userId");
+                navigate("/");
+            });
     }, []);
 
     function navigateToDeckCreation() {
