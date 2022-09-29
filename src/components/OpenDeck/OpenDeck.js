@@ -117,7 +117,7 @@ const Container = styled.div`
     justify-content: center;
 
     @media (max-width: 900px) {
-        padding-bottom: 100px;
+        margin: 100px 0;
     }
 `;
 
@@ -164,7 +164,11 @@ const Title = styled.div`
         font-size: 13px;
 
         h3 {
-            font-size: 16px;
+            font-size: 20px;
+        }
+
+        h4 {
+            font-size: 13px;
         }
     }
 `;
@@ -206,6 +210,8 @@ const Body = styled.div`
 
     @media (max-width: 900px) {
         flex-direction: column;
+        width: 100%;
+        height: 300px;
     }
 `;
 
@@ -252,6 +258,12 @@ const QuestionData = styled.div`
 
         height: 90%;
     }
+
+    @media (max-width: 900px) {
+        h2 {
+            font-size: 25px;
+        }
+    }
 `;
 
 const Controls = styled.div`
@@ -277,10 +289,19 @@ const Controls = styled.div`
 
         cursor: pointer;
     }
+
+    @media (max-width: 900px) {
+        svg {
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+        }
+    }
 `;
 
 const Button = styled.div`
     width: 200px;
+    max-width: 200px;
     height: 40px;
 
     margin: 0 15px;
@@ -299,9 +320,20 @@ const Button = styled.div`
     background-color: black;
 
     cursor: pointer;
+
+    @media (max-width: 900px) {
+        width: calc(100% - 60px);
+        height: 30px;
+        font-size: 11px;
+    }
 `;
 
 const FakeControlDiv = styled.div`
     width: 40px;
     height: 40px;
+
+    @media (max-width: 900px) {
+        width: 30px;
+        height: 30px;
+    }
 `;
