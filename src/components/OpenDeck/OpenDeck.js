@@ -1,68 +1,31 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Bars } from "react-loader-spinner";
 import styled from "styled-components";
-import Modal from "react-modal";
 import axios from "axios";
 
-import DeckCard from "./DeckCard";
-
-export default function Home() {
+export default function OpenDeck() {
     const navigate = useNavigate();
     const ONE_SECOND = 1000;
+    const { deckId } = useParams();
 
-    const [username, setUsername] = useState("");
-    const [decks, setDecks] = useState([]);
     const [modalIsOpen, setModalIsOpen] = useState(true);
+    const [deck, setDeck] = useState({});
 
     useEffect(() => {
-        const url = `https://superzaprecall.onrender.com/deck/user/${localStorage.getItem(
-            "userId"
-        )}`;
+        const url = `https://superzaprecall.onrender.com/deck/${deckId}`;
         const config = {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
         };
-
-        const promise = axios.get(url, config);
-
-        promise.then((res) => {
-            setTimeout(() => {
-                setDecks([...res.data.decks]);
-                setUsername(res.data.username);
-                setModalIsOpen(false);
-            }, ONE_SECOND / 3);
-        });
     }, []);
-
-    function navigateToDeckCreation() {
-        navigate("/create");
-    }
 
     return (
         <Container>
             <HomePage>
-                <Title>
-                    <h3>Seus decks</h3>
-                    <Button onClick={navigateToDeckCreation}>Novo deck</Button>
-                </Title>
-                <Content>
-                    {decks.length > 0 || modalIsOpen ? (
-                        decks.map((deck, index) => (
-                            <DeckCard
-                                deck={deck}
-                                username={username}
-                                key={index}
-                            />
-                        ))
-                    ) : (
-                        <h5>
-                            Você ainda não tem nenhum deck, crie clicando em
-                            "Novo deck"
-                        </h5>
-                    )}
-                </Content>
+                <Title></Title>
+                <Content></Content>
             </HomePage>
             <Modal
                 isOpen={modalIsOpen}

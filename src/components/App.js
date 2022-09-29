@@ -5,6 +5,7 @@ import "../assets/reset.css";
 import "../assets/styles.css";
 
 import DeckCreation from "./DeckCreation/DeckCreation";
+import OpenDeck from "./OpenDeck/OpenDeck";
 import Header from "./Header/Header";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./SignUp/SignUp";
@@ -30,6 +31,7 @@ export default function App() {
                 <Route path="/signUp" element={<SignUp />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/create" element={<DeckCreation />} />
+                <Route path="/deck/:deckId" element={<OpenDeck />} />
             </Routes>
         </BrowserRouter>
     );

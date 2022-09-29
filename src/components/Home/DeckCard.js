@@ -1,8 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export default function DeckCard({ deck, username }) {
+    const navigate = useNavigate();
+
+    function navigateToDeck() {
+        navigate(`/deck/${deck.id}`);
+    }
+
     return (
-        <Container>
+        <Container onClick={navigateToDeck}>
             <DeckInfo>
                 <h3>{deck.name}</h3>
                 <h4>by {username}</h4>
