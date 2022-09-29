@@ -22,6 +22,10 @@ const Container = styled.div`
     border-radius: 8px;
 
     cursor: pointer;
+
+    @media (max-width: 900px) {
+        width: 100%;
+    }
 `;
 
 const DeckInfo = styled.div`

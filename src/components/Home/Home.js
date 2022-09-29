@@ -62,6 +62,7 @@ const Container = styled.div`
     height: 100vh;
 
     padding-top: 100px;
+    margin-bottom: 100px;
 
     display: flex;
     justify-content: center;
@@ -71,6 +72,12 @@ const HomePage = styled.div`
     width: 50%;
 
     padding-top: 100px;
+
+    @media (max-width: 900px) {
+        width: 100%;
+        padding: 25px;
+        padding-top: 60px;
+    }
 `;
 
 const Title = styled.div`
@@ -124,5 +131,9 @@ const Content = styled.div`
         font-size: 20px;
 
         padding-top: 100px;
+    }
+
+    @media (max-width: 900px) {
+        flex-direction: column;
     }
 `;
