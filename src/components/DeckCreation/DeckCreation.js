@@ -235,7 +235,8 @@ const Content = styled.div`
 `;
 
 const ErrorMessage = styled.div`
-    width: 60%;
+    width: 85%;
+    max-width: 400px;
     margin-top: 15px;
 
     font-family: "Krona One", sans-serif;
