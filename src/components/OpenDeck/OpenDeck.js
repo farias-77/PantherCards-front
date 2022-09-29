@@ -112,15 +112,18 @@ const Title = styled.div`
     align-items: center;
 
     font-family: "Krona One", sans-serif;
+
     h3 {
         color: white;
-        font-size: 30px;
+        font-size: 20px;
+        line-height: 40px;
+        width: 75%;
     }
 
     h4 {
+        color: grey;
         margin-left: 10px;
         font-size: 16px;
-        color: grey;
     }
 
     @media (max-width: 900px) {

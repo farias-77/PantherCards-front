@@ -1,5 +1,6 @@
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import logo from "../../assets/pantherLogo.svg";
+import { Bars } from "react-loader-spinner";
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -88,7 +89,7 @@ const Body = styled.div`
     @media (max-width: 900px) {
         flex-direction: column;
         width: 100%;
-        height: 300px;
+        height: 450px;
     }
 `;
 
