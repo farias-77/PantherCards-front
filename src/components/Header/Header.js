@@ -39,6 +39,7 @@ const Container = styled.div`
     top: 0;
     left: 0;
     z-index: 3;
+    font-family: "Krona One", sans-serif;
 
     @media (max-width: 900px) {
         height: 80px;

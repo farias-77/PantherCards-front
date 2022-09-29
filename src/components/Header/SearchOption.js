@@ -1,13 +1,44 @@
+import { useNavigate } from "react-router-dom";
+import { Bars } from "react-loader-spinner";
 import styled from "styled-components";
+import { useState } from "react";
+import Modal from "react-modal";
 
 export default function SearchOption({ result, isLastResult }) {
+    const navigate = useNavigate();
+    const HALF_SECOND = 500;
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    function navigateUserPage() {
+        if (!result.id) {
+            return;
+        }
+
+        setModalIsOpen(true);
+        setTimeout(() => {
+            navigate(`/user/${result.id}`);
+            setModalIsOpen(false);
+        }, HALF_SECOND);
+    }
+
     return (
-        <Container
-            isLastResult={isLastResult}
-            isNotFound={result.id ? false : true}
-        >
-            {result.username}
-        </Container>
+        <>
+            <Container
+                isLastResult={isLastResult}
+                isNotFound={result.id ? false : true}
+                onClick={navigateUserPage}
+            >
+                {result.username}
+            </Container>
+            <Modal
+                isOpen={modalIsOpen}
+                contentLabel="Loading modal"
+                overlayClassName="modal-overlay"
+                className="modal-content"
+            >
+                <Bars height="60" color="white" ariaLabel="Loading..." />
+            </Modal>
+        </>
     );
 }
 
@@ -22,7 +53,7 @@ const Container = styled.div`
     border-radius: ${(props) => (props.isLastResult ? "0 0 8px 8px" : "0")};
     background-color: #e7e7e7;
 
-    font-size: 18px;
+    font-size: 15px;
 
     &:hover {
         ${(props) =>
