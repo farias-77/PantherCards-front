@@ -43,6 +43,14 @@ export default function UserPage({ setDisplayHeader, refresh }) {
             });
     }, [refresh]);
 
+    function navigateHome() {
+        setModalIsOpen(true);
+        setTimeout(() => {
+            navigate("/home");
+            setModalIsOpen(false);
+        }, ONE_SECOND);
+    }
+
     return (
         <Container>
             <HomePage>
@@ -63,6 +71,7 @@ export default function UserPage({ setDisplayHeader, refresh }) {
                     )}
                 </Content>
             </HomePage>
+            <Button onClick={navigateHome}>Voltar para o menu</Button>
             <Modal
                 isOpen={modalIsOpen}
                 contentLabel="Loading modal"
@@ -82,7 +91,8 @@ const Container = styled.div`
     padding-top: 30px;
 
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 
     @media (max-width: 900px) {
         padding: 100px 0;
@@ -132,7 +142,7 @@ const Title = styled.div`
 `;
 
 const Button = styled.div`
-    width: 150px;
+    width: 200px;
     height: 40px;
 
     border-radius: 8px;
@@ -142,7 +152,7 @@ const Button = styled.div`
     align-items: center;
     justify-content: center;
 
-    font-family: "Krona One", sans-serif;
+    font-size: 18px;
     text-align: center;
     color: white;
 

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Bars } from "react-loader-spinner";
 import styled from "styled-components";
@@ -10,6 +10,7 @@ import QuestionBody from "./QuestionBody";
 export default function OpenDeck() {
     const ONE_SECOND = 1000;
     const { deckId } = useParams();
+    const navigate = useNavigate();
 
     const [questionFocus, setQuestionFocus] = useState(0);
     const [modalIsOpen, setModalIsOpen] = useState(true);
@@ -30,6 +31,14 @@ export default function OpenDeck() {
         });
     }, []);
 
+    function navigateHome() {
+        setModalIsOpen(true);
+        setTimeout(() => {
+            navigate("/home");
+            setModalIsOpen(false);
+        }, ONE_SECOND);
+    }
+
     function renderQuestions() {
         return deck.questions.map((question, index) =>
             questionBody(question, index)
@@ -49,6 +58,7 @@ export default function OpenDeck() {
                 setQuestionFocus={setQuestionFocus}
                 deck={deck}
                 setModalIsOpen={setModalIsOpen}
+                key={index}
             />
         );
     }
@@ -61,7 +71,7 @@ export default function OpenDeck() {
                     <h4>{deck.user ? "by " + deck.user.username : ""}</h4>
                 </Title>
                 {deck.questions ? renderQuestions() : <></>}
-                <Button>Voltar para o menu</Button>
+                <Button onClick={navigateHome}>Voltar para o menu</Button>
             </QuestionPage>
             <Modal
                 isOpen={modalIsOpen}
