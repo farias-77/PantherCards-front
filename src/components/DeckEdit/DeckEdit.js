@@ -1,3 +1,4 @@
+import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { Bars } from "react-loader-spinner";
@@ -16,8 +17,11 @@ export default function DeckCreation() {
 
     const [loadingNewQuestion, setLoadingNewQuestion] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(true);
+    const [displayLoading, setDisplayLoading] = useState(false);
     const [deckName, setDeckName] = useState("");
     const [deckQuestions, setDeckQuestions] = useState([]);
+    const [deckNameError, setDeckNameError] = useState("");
+    const [questionsError, setQuestionsError] = useState("");
 
     useEffect(() => {
         const url = `https://superzaprecall.onrender.com/deck/${deckId}`;
@@ -43,16 +47,6 @@ export default function DeckCreation() {
         }, ONE_SECOND);
     }
 
-    function renderQuestions() {
-        return deckQuestions.map((question, index) =>
-            questionBody(question, index)
-        );
-    }
-
-    function questionBody(question, index) {
-        return <></>;
-    }
-
     function addNewQuestion() {
         if (loadingNewQuestion) {
             return;
@@ -74,6 +68,101 @@ export default function DeckCreation() {
         return filteredQuestions;
     }
 
+    function closeEditConfirm() {
+        setModalIsOpen(false);
+    }
+
+    function editDeck() {
+        setDisplayLoading(true);
+
+        const url = `https://superzaprecall.onrender.com/deck/${deckId}`;
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        };
+
+        const promise = axios.delete(url, config);
+
+        promise
+            .then((res) => {
+                sendNewDeck();
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+
+    function sendNewDeck() {
+        const filteredQuestions = filterEmptyQuestions();
+        setDeckNameError("");
+        setQuestionsError("");
+
+        if (deckName === "") {
+            setTimeout(() => {
+                setModalIsOpen(false);
+                setDisplayLoading(false);
+                setDeckNameError("Por favor, insira um nome para o deck");
+            }, ONE_SECOND);
+            return;
+        }
+
+        if (filteredQuestions.length === 0) {
+            setTimeout(() => {
+                setModalIsOpen(false);
+                setDisplayLoading(false);
+                setQuestionsError(
+                    "Você deve enviar no mínimo uma pergunta, perguntas com campos em branco são desconsideradas"
+                );
+            }, ONE_SECOND);
+            return;
+        }
+
+        const url = "https://superzaprecall.onrender.com/deck";
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        };
+        const body = { name: deckName };
+
+        const promise = axios.post(url, body, config);
+
+        promise
+            .then((res) => {
+                const deckId = res.data.id;
+                sendNewQuestions(filteredQuestions, deckId);
+                setDeckNameError("");
+            })
+            .catch((err) => {
+                setDeckNameError(err.response.data);
+                setModalIsOpen(false);
+            });
+    }
+
+    function sendNewQuestions(questions, deckId) {
+        const url = `https://superzaprecall.onrender.com/deck/questions/${deckId}`;
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        };
+        const body = { questions };
+
+        const promise = axios.post(url, body, config);
+
+        promise
+            .then(() => {
+                setModalIsOpen(false);
+                setDisplayLoading(false);
+                setQuestionsError("");
+                navigate("/home");
+            })
+            .catch((err) => {
+                setModalIsOpen(false);
+            });
+    }
+
     return (
         <Container>
             <EditPage>
@@ -85,6 +174,8 @@ export default function DeckCreation() {
                         deckName={deckName}
                         setDeckName={setDeckName}
                     />
+
+                    <ErrorMessage>{deckNameError}</ErrorMessage>
 
                     {deckQuestions.length > 0 ? (
                         deckQuestions.map((question, index) => (
@@ -98,6 +189,8 @@ export default function DeckCreation() {
                     ) : (
                         <></>
                     )}
+
+                    <ErrorMessage>{questionsError}</ErrorMessage>
 
                     <Controls>
                         <Button onClick={addNewQuestion} ref={newQuestion}>
@@ -126,7 +219,21 @@ export default function DeckCreation() {
                 overlayClassName="modal-overlay"
                 className="modal-content"
             >
-                <Bars height="60" color="white" ariaLabel="Loading..." />
+                {displayLoading ? (
+                    <Bars height="60" color="white" ariaLabel="Loading..." />
+                ) : (
+                    <>
+                        <h2>Tem certeza que deseja editar o deck?</h2>
+                        <div>
+                            <Button onClick={closeEditConfirm}>
+                                <AiOutlineClose />
+                            </Button>
+                            <Button onClick={editDeck}>
+                                <AiOutlineCheck />
+                            </Button>
+                        </div>
+                    </>
+                )}
             </Modal>
         </Container>
     );

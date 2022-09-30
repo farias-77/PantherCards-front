@@ -79,7 +79,7 @@ export default function DeckCard({ deck, username, setRefresh }) {
                 isOpen={modalIsOpen}
                 contentLabel="Loading modal"
                 overlayClassName="modal-overlay"
-                className="modal-delete"
+                className="modal-content"
             >
                 {displayLoading ? (
                     <Bars height="60" color="white" ariaLabel="Loading..." />
