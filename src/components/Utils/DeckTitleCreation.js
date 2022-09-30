@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { DebounceInput } from "react-debounce-input";
 
-export default function DeckTitleCreation({ deckName, setDeckName }) {
+export default function DeckTitleEdit({ deckName, setDeckName }) {
     return (
         <Container>
             <p>Título</p>

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Modal from "react-modal";
 import axios from "axios";
 
-import DeckTitleCreation from "./DeckTitleCreation";
+import DeckTitleEdit from "../Utils/DeckTitleCreation";
 import QuestionCreation from "./QuestionCreation";
 
 export default function DeckCreation() {
@@ -133,7 +133,7 @@ export default function DeckCreation() {
                     <h3>Crie um novo deck!</h3>
                 </Title>
                 <Content>
-                    <DeckTitleCreation
+                    <DeckTitleEdit
                         deckName={deckName}
                         setDeckName={setDeckName}
                     />
