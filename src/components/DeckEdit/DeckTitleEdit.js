@@ -3,7 +3,7 @@ import { DebounceInput } from "react-debounce-input";
 
 //CÓPIA DE DECKTITLECREATION -> AGUARDANDO DESENVOLVIMENTO DO BACK-END
 
-export default function DeckTitleCreation({ deckName, setDeckName }) {
+export default function DeckTitleEdit({ deckName, setDeckName }) {
     return (
         <Container>
             <p>Título</p>

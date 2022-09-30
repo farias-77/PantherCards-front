@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Modal from "react-modal";
 import axios from "axios";
+import DeckTitleEdit from "./DeckTitleEdit";
 
 export default function DeckCreation() {
     const { deckId } = useParams();
@@ -78,7 +79,10 @@ export default function DeckCreation() {
                     <h3>{deckName ? `Editando: ${deckName}` : ""}</h3>
                 </Title>
                 <Content>
-                    {/* renderizar perguntas */}
+                    <DeckTitleEdit
+                        deckName={deckName}
+                        setDeckName={setDeckName}
+                    />
 
                     <Controls>
                         <Button

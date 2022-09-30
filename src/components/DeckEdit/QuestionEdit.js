@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 //CÓPIA DE QUESTIONCREATION -> AGUARDANDO DESENVOLVIMENTO DO BACK-END
 
-export default function QuestionCreation({
+export default function QuestionEdit({
     index,
     questionsArray,
     setQuestionsArray,
