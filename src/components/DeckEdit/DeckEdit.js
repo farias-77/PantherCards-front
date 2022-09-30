@@ -17,7 +17,7 @@ export default function DeckCreation() {
 
     const [loadingNewQuestion, setLoadingNewQuestion] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(true);
-    const [displayLoading, setDisplayLoading] = useState(false);
+    const [displayLoading, setDisplayLoading] = useState(true);
     const [deckName, setDeckName] = useState("");
     const [deckQuestions, setDeckQuestions] = useState([]);
     const [deckNameError, setDeckNameError] = useState("");
@@ -35,7 +35,7 @@ export default function DeckCreation() {
         promise.then((res) => {
             setDeckName(res.data.name);
             setDeckQuestions([...res.data.questions]);
-            setModalIsOpen(false);
+            setTimeout(() => setModalIsOpen(false), ONE_SECOND);
         });
     }, []);
 
@@ -61,9 +61,11 @@ export default function DeckCreation() {
     }
 
     function filterEmptyQuestions() {
-        const filteredQuestions = deckQuestions.filter(
-            (question) => question.question && question.answer
-        );
+        const filteredQuestions = deckQuestions
+            .map((question) => {
+                return { question: question.question, answer: question.answer };
+            })
+            .filter((question) => question.question && question.answer);
 
         return filteredQuestions;
     }
@@ -73,28 +75,9 @@ export default function DeckCreation() {
     }
 
     function editDeck() {
+        setModalIsOpen(true);
         setDisplayLoading(true);
-
-        const url = `https://superzaprecall.onrender.com/deck/${deckId}`;
-        const config = {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-        };
-
-        const promise = axios.delete(url, config);
-
-        promise
-            .then((res) => {
-                sendNewDeck();
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }
-
-    function sendNewDeck() {
-        const filteredQuestions = filterEmptyQuestions();
+        let filteredQuestions = filterEmptyQuestions();
         setDeckNameError("");
         setQuestionsError("");
 
@@ -118,6 +101,25 @@ export default function DeckCreation() {
             return;
         }
 
+        const url = `https://superzaprecall.onrender.com/deck/${deckId}`;
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        };
+
+        const promise = axios.delete(url, config);
+
+        promise
+            .then((res) => {
+                sendNewDeck(filteredQuestions);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+
+    function sendNewDeck(filteredQuestions) {
         const url = "https://superzaprecall.onrender.com/deck";
         const config = {
             headers: {
@@ -131,6 +133,7 @@ export default function DeckCreation() {
         promise
             .then((res) => {
                 const deckId = res.data.id;
+                console.log(deckId);
                 sendNewQuestions(filteredQuestions, deckId);
                 setDeckNameError("");
             })
@@ -170,10 +173,14 @@ export default function DeckCreation() {
                     <h3>{deckName ? `Editando: ${deckName}` : ""}</h3>
                 </Title>
                 <Content>
-                    <DeckTitleEdit
-                        deckName={deckName}
-                        setDeckName={setDeckName}
-                    />
+                    {deckQuestions.length !== 0 ? (
+                        <DeckTitleEdit
+                            deckName={deckName}
+                            setDeckName={setDeckName}
+                        />
+                    ) : (
+                        <></>
+                    )}
 
                     <ErrorMessage>{deckNameError}</ErrorMessage>
 
@@ -192,25 +199,27 @@ export default function DeckCreation() {
 
                     <ErrorMessage>{questionsError}</ErrorMessage>
 
-                    <Controls>
-                        <Button onClick={addNewQuestion} ref={newQuestion}>
-                            {false ? (
-                                <Bars
-                                    height="20"
-                                    color="white"
-                                    ariaLabel="Loading..."
-                                />
-                            ) : (
-                                "Adicionar pergunta"
-                            )}
-                        </Button>
-                        <Button onClick={navigateHome}>
-                            Voltar para o menu
-                        </Button>
-                        <Button onClick={() => console.log("")}>
-                            Enviar deck
-                        </Button>
-                    </Controls>
+                    {deckQuestions.length !== 0 ? (
+                        <Controls>
+                            <Button onClick={addNewQuestion} ref={newQuestion}>
+                                {false ? (
+                                    <Bars
+                                        height="20"
+                                        color="white"
+                                        ariaLabel="Loading..."
+                                    />
+                                ) : (
+                                    "Adicionar pergunta"
+                                )}
+                            </Button>
+                            <Button onClick={navigateHome}>
+                                Voltar para o menu
+                            </Button>
+                            <Button onClick={editDeck}>Enviar deck</Button>
+                        </Controls>
+                    ) : (
+                        <></>
+                    )}
                 </Content>
             </EditPage>
             <Modal

@@ -100,7 +100,6 @@ export default function DeckCreation() {
         const filteredQuestions = questionsArray.filter(
             (question) => question.question && question.answer
         );
-
         return filteredQuestions;
     }
 
@@ -116,7 +115,7 @@ export default function DeckCreation() {
         const promise = axios.post(url, body, config);
 
         promise
-            .then(() => {
+            .then((res) => {
                 setModalIsOpen(false);
                 setQuestionsError("");
                 navigate("/home");
