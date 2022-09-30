@@ -1,6 +1,7 @@
 import { AiFillDelete, AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { Bars } from "react-loader-spinner";
+import { MdModeEdit } from "react-icons/md";
 import styled from "styled-components";
 import { useState } from "react";
 import Modal from "react-modal";
@@ -53,6 +54,16 @@ export default function DeckCard({ deck, username, setRefresh }) {
         setModalIsOpen(false);
     }
 
+    function openDeckEdit() {
+        setDisplayLoading(true);
+        setModalIsOpen(true);
+        setTimeout(() => {
+            setModalIsOpen(false);
+            setDisplayLoading(false);
+            navigate("/edit");
+        }, ONE_SECOND);
+    }
+
     return (
         <Container>
             <Deck onClick={navigateToDeck}>
@@ -62,7 +73,10 @@ export default function DeckCard({ deck, username, setRefresh }) {
             <Controls>
                 {Number(deck.userId) ===
                 Number(localStorage.getItem("userId")) ? (
-                    <AiFillDelete onClick={openDeleteConfirm} />
+                    <>
+                        <AiFillDelete onClick={openDeleteConfirm} />
+                        <MdModeEdit onClick={openDeckEdit} />
+                    </>
                 ) : (
                     <></>
                 )}
@@ -111,7 +125,7 @@ const Container = styled.div`
 `;
 
 const Deck = styled.div`
-    width: 90%;
+    width: 93%;
     height: 100%;
 
     padding: 20px;
@@ -171,22 +185,19 @@ const Button = styled.div`
 `;
 
 const Controls = styled.div`
-    width: 10%;
+    width: 7%;
     height: 100%;
 
     background-color: black;
 
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 
     svg {
+        font-size: 22px;
         color: white;
-        font-size: 25px;
-
-        position: absolute;
-        right: 10px;
-        top: 10px;
-
-        z-index: 1;
 
         cursor: pointer;
     }

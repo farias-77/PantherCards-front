@@ -7,11 +7,12 @@ import "../assets/styles.css";
 
 import DeckCreation from "./DeckCreation/DeckCreation";
 import OpenDeck from "./OpenDeck/OpenDeck";
+import UserPage from "./UserPage/UserPage";
+import DeckEdit from "./DeckEdit/DeckEdit";
 import Header from "./Header/Header";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./SignUp/SignUp";
 import Home from "./Home/Home";
-import UserPage from "./UserPage/UserPage";
 
 Modal.setAppElement(".root");
 
@@ -42,6 +43,7 @@ export default function App() {
                     element={<Home setDisplayHeader={setDisplayHeader} />}
                 />
                 <Route path="/create" element={<DeckCreation />} />
+                <Route path="/edit" element={<DeckEdit />} />
                 <Route path="/deck/:deckId" element={<OpenDeck />} />
                 <Route
                     path="/user/:userId"
