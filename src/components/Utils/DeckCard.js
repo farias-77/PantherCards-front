@@ -17,6 +17,10 @@ export default function DeckCard({ deck, username, setRefresh }) {
         navigate(`/deck/${deck.id}`);
     }
 
+    function navigateToEdit() {
+        navigate(`/edit/${deck.id}`);
+    }
+
     function deleteDeck() {
         setDisplayLoading(true);
 
@@ -54,16 +58,6 @@ export default function DeckCard({ deck, username, setRefresh }) {
         setModalIsOpen(false);
     }
 
-    function openDeckEdit() {
-        setDisplayLoading(true);
-        setModalIsOpen(true);
-        setTimeout(() => {
-            setModalIsOpen(false);
-            setDisplayLoading(false);
-            navigate("/edit");
-        }, ONE_SECOND);
-    }
-
     return (
         <Container>
             <Deck onClick={navigateToDeck}>
@@ -75,7 +69,7 @@ export default function DeckCard({ deck, username, setRefresh }) {
                 Number(localStorage.getItem("userId")) ? (
                     <>
                         <AiFillDelete onClick={openDeleteConfirm} />
-                        <MdModeEdit onClick={openDeckEdit} />
+                        <MdModeEdit onClick={navigateToEdit} />
                     </>
                 ) : (
                     <></>

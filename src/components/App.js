@@ -43,7 +43,7 @@ export default function App() {
                     element={<Home setDisplayHeader={setDisplayHeader} />}
                 />
                 <Route path="/create" element={<DeckCreation />} />
-                <Route path="/edit" element={<DeckEdit />} />
+                <Route path="/edit/:deckId" element={<DeckEdit />} />
                 <Route path="/deck/:deckId" element={<OpenDeck />} />
                 <Route
                     path="/user/:userId"
