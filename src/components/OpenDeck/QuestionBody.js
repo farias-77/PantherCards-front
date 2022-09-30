@@ -13,12 +13,8 @@ export default function QuestionBody({
     setModalIsOpen,
 }) {
     const [displayAnswer, setDisplayAnswer] = useState(false);
-    const ONE_SECOND = 1000;
 
     function changeQuestion(next) {
-        setModalIsOpen(true);
-        setTimeout(() => setModalIsOpen(false), ONE_SECOND / 2);
-
         setQuestionFocus(questionFocus + next);
         setDisplayAnswer(false);
     }
