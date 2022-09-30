@@ -5,8 +5,8 @@ import styled from "styled-components";
 import Modal from "react-modal";
 import axios from "axios";
 
-import DeckTitleEdit from "../Utils/DeckTitleCreation";
-import QuestionCreation from "./QuestionCreation";
+import DeckQuestionEdit from "../Utils/DeckQuestionEdit";
+import DeckTitleEdit from "../Utils/DeckTitleEdit";
 
 export default function DeckCreation() {
     const ONE_SECOND = 1000;
@@ -140,7 +140,7 @@ export default function DeckCreation() {
                     <ErrorMessage>{deckNameError}</ErrorMessage>
 
                     {questionsArray.map((question, index) => (
-                        <QuestionCreation
+                        <DeckQuestionEdit
                             key={index}
                             questionsArray={questionsArray}
                             setQuestionsArray={setQuestionsArray}

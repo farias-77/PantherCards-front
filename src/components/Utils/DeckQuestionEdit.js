@@ -2,7 +2,7 @@ import { DebounceInput } from "react-debounce-input";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 
-export default function QuestionCreation({
+export default function DeckQuestionEdit({
     index,
     questionsArray,
     setQuestionsArray,

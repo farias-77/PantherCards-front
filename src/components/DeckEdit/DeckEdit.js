@@ -1,10 +1,12 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { Bars } from "react-loader-spinner";
 import { useState, useEffect, useRef } from "react";
+import { Bars } from "react-loader-spinner";
 import styled from "styled-components";
 import Modal from "react-modal";
 import axios from "axios";
-import DeckTitleEdit from "./DeckTitleEdit";
+
+import DeckQuestionEdit from "../Utils/DeckQuestionEdit";
+import DeckTitleEdit from "../Utils/DeckTitleEdit";
 
 export default function DeckCreation() {
     const { deckId } = useParams();
@@ -84,11 +86,21 @@ export default function DeckCreation() {
                         setDeckName={setDeckName}
                     />
 
+                    {deckQuestions.length > 0 ? (
+                        deckQuestions.map((question, index) => (
+                            <DeckQuestionEdit
+                                key={index}
+                                questionsArray={deckQuestions}
+                                setQuestionsArray={setDeckQuestions}
+                                index={index}
+                            />
+                        ))
+                    ) : (
+                        <></>
+                    )}
+
                     <Controls>
-                        <Button
-                            onClick={() => console.log("")}
-                            ref={newQuestion}
-                        >
+                        <Button onClick={addNewQuestion} ref={newQuestion}>
                             {false ? (
                                 <Bars
                                     height="20"
