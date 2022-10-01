@@ -25,8 +25,8 @@ body{
 }
 
 .modal-content{
-    width: 200px;
-    height: 200px;
+    width: 160px;
+    height: 160px;
     
     display: flex;
     flex-direction: column;
@@ -40,7 +40,7 @@ body{
 }
 
 .modal-content > div{
-    width: 85%;
+    width:85%;
 
     display: flex;
     justify-content: space-around;
@@ -53,6 +53,4 @@ body{
     font-size: 18px;
     line-height: 22px;
     color: white;
-
-    margin-bottom: 20px;
 }

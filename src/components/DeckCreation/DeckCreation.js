@@ -144,13 +144,18 @@ export default function DeckCreation() {
                             questionsArray={questionsArray}
                             setQuestionsArray={setQuestionsArray}
                             index={index}
+                            ref={
+                                index === questionsArray.length - 1
+                                    ? newQuestion
+                                    : ""
+                            }
                         />
                     ))}
 
                     <ErrorMessage>{questionsError}</ErrorMessage>
 
                     <Controls>
-                        <Button onClick={addNewQuestion} ref={newQuestion}>
+                        <Button onClick={addNewQuestion}>
                             {loadingNewQuestion ? (
                                 <Bars
                                     height="20"
@@ -278,7 +283,6 @@ const Controls = styled.div`
     justify-content: space-between;
 
     margin-top: 20px;
-    margin-bottom: 100px;
 
     @media (max-width: 900px) {
         flex-direction: column;
