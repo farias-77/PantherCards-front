@@ -114,7 +114,7 @@ const HomePage = styled.div`
     align-items: center;
 
     @media (max-width: 900px) {
-        padding: 45px;
+        padding: 25px;
         padding-top: 60px;
     }
 `;

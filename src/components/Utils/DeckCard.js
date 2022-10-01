@@ -179,10 +179,12 @@ const Button = styled.div`
 `;
 
 const Controls = styled.div`
+    min-width: 40px;
     width: 7%;
     height: 100%;
 
     background-color: black;
+    border-radius: 8px;
 
     display: flex;
     flex-direction: column;
