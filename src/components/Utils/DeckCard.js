@@ -102,7 +102,7 @@ export default function DeckCard({ deck, username, setRefresh }) {
 }
 
 const Container = styled.div`
-    width: 60%;
+    width: 100%;
     max-width: 600px;
 
     display: flex;

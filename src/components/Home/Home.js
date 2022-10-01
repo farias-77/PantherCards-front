@@ -96,12 +96,13 @@ export default function Home({ setDisplayHeader }) {
 
 const Container = styled.div`
     width: 100%;
-    height: 100vh;
+    height: 100%;
 
     display: flex;
     justify-content: center;
 
     margin-top: 100px;
+    padding-top: 30px;
 
     @media (max-width: 900px) {
         padding: 100px 0;
@@ -109,10 +110,8 @@ const Container = styled.div`
 `;
 
 const HomePage = styled.div`
-    width: 80%;
+    width: 50%;
     max-width: 900px;
-
-    padding-top: 30px;
 
     display: flex;
     flex-direction: column;
@@ -125,7 +124,7 @@ const HomePage = styled.div`
 `;
 
 const Title = styled.div`
-    width: 60%;
+    width: 100%;
     max-width: 600px;
 
     display: flex;
@@ -151,28 +150,9 @@ const Title = styled.div`
     }
 `;
 
-const Button = styled.div`
-    width: 150px;
-    height: 40px;
-
-    border-radius: 8px;
-    border: 1px solid white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-family: "Krona One", sans-serif;
-    text-align: center;
-    color: white;
-
-    background-color: black;
-
-    cursor: pointer;
-`;
-
 const Content = styled.div`
     width: 100%;
+    max-width: 600px;
 
     padding-top: 50px;
 
@@ -191,8 +171,24 @@ const Content = styled.div`
 
         padding-top: 100px;
     }
+`;
 
-    @media (max-width: 900px) {
-        flex-direction: column;
-    }
+const Button = styled.div`
+    width: 150px;
+    height: 40px;
+
+    border-radius: 8px;
+    border: 1px solid white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: "Krona One", sans-serif;
+    text-align: center;
+    color: white;
+
+    background-color: black;
+
+    cursor: pointer;
 `;
