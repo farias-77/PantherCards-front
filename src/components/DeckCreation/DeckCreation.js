@@ -144,11 +144,6 @@ export default function DeckCreation() {
                             questionsArray={questionsArray}
                             setQuestionsArray={setQuestionsArray}
                             index={index}
-                            ref={
-                                index === questionsArray.length - 1
-                                    ? newQuestion
-                                    : ""
-                            }
                         />
                     ))}
 
@@ -283,6 +278,7 @@ const Controls = styled.div`
     justify-content: space-between;
 
     margin-top: 20px;
+    margin-bottom: 40px;
 
     @media (max-width: 900px) {
         flex-direction: column;
