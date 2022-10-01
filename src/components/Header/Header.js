@@ -5,6 +5,7 @@ import styled from "styled-components";
 import SearchMobile from "./SearchMobile";
 import Search from "./Search";
 import Logout from "./Logout";
+import Menu from "./Menu";
 
 export default function Header({ setDisplayHeader, setRefresh }) {
     const navigate = useNavigate();
@@ -16,6 +17,7 @@ export default function Header({ setDisplayHeader, setRefresh }) {
     return (
         <Container>
             <HeaderBox>
+                <Menu />
                 <Logo onClick={navigateHome}>
                     <img src={logo} alt="logo" />
                     <h1>PantherCards</h1>
@@ -88,14 +90,10 @@ const Logo = styled.div`
 
     @media (max-width: 900px) {
         width: 50%;
-
-        h1 {
-            display: block;
-            font-size: 15px;
-        }
-
         img {
             width: 80px;
         }
+
+        justify-content: center;
     }
 `;

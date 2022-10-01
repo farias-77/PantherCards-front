@@ -36,8 +36,6 @@ const Container = styled.div`
     }
 
     @media (max-width: 900px) {
-        width: 50%;
-
         svg {
             font-size: 30px;
         }
