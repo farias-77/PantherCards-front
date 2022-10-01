@@ -111,7 +111,7 @@ const Question = styled.div`
         padding: 8px 15px;
 
         input {
-            height: 40px;
+            height: 35px;
             border-radius: 6px;
             font-size: 15px;
             padding-left: 10px;

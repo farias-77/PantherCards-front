@@ -182,42 +182,57 @@ export default function DeckCreation() {
 
 const Container = styled.div`
     width: 100%;
-    height: 100vh;
-
-    padding-top: 30px;
+    height: 100%;
 
     display: flex;
     justify-content: center;
 
+    margin-top: 100px;
+
     @media (max-width: 900px) {
-        padding: 60px 0;
+        margin-top: 150px;
     }
 `;
 
 const CreationPage = styled.div`
     width: 50%;
+    max-width: 900px;
 
-    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 30px;
 
     @media (max-width: 900px) {
         width: 100%;
+
+        margin-top: 10px;
+        margin-bottom: 20px;
+
+        padding: 0 25px;
     }
 `;
 
 const Title = styled.div`
     width: 100%;
+    max-width: 600px;
 
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
 
     h3 {
         font-family: "Krona One", sans-serif;
         color: white;
         font-size: 30px;
-        margin-bottom: 20px;
     }
 
     @media (max-width: 900px) {
+        width: 100%;
+    }
+
+    @media (max-width: 500px) {
         h3 {
             font-size: 20px;
         }
@@ -226,11 +241,65 @@ const Title = styled.div`
 
 const Content = styled.div`
     width: 100%;
-    margin-top: 30px;
+    max-width: 600px;
+
+    padding-top: 50px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    > h5 {
+        width: 100%;
+        height: 100%;
+
+        text-align: center;
+
+        color: white;
+        font-size: 20px;
+
+        padding-top: 100px;
+    }
+`;
+
+const Controls = styled.div`
+    width: 85%;
+    max-width: 400px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 20px;
+    margin-bottom: 40px;
+`;
+
+const Button = styled.div`
+    width: 220px;
+    height: 40px;
+
+    margin-bottom: 15px;
+
+    border-radius: 8px;
+    border: 1px solid white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: "Krona One", sans-serif;
+    text-align: center;
+    font-size: 13px;
+    color: white;
+
+    background-color: black;
+
+    cursor: pointer;
+
+    @media (max-width: 900px) {
+        width: 180px;
+        font-size: 12px;
+    }
 `;
 
 const ErrorMessage = styled.div`
@@ -244,45 +313,4 @@ const ErrorMessage = styled.div`
     line-height: 16px;
 
     text-align: center;
-`;
-
-const Button = styled.div`
-    width: 30%;
-    height: 50px;
-
-    background-color: black;
-    border: 1px solid white;
-    border-radius: 10px;
-
-    color: white;
-    font-size: 16px;
-    text-align: center;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    cursor: pointer;
-
-    @media (max-width: 900px) {
-        margin-bottom: 15px;
-        width: 45%;
-    }
-`;
-
-const Controls = styled.div`
-    width: 85%;
-    max-width: 400px;
-
-    display: flex;
-    justify-content: space-between;
-
-    margin-top: 20px;
-    margin-bottom: 40px;
-
-    @media (max-width: 900px) {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
 `;
