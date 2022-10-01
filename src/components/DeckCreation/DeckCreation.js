@@ -150,7 +150,7 @@ export default function DeckCreation() {
                     <ErrorMessage>{questionsError}</ErrorMessage>
 
                     <Controls>
-                        <Button onClick={addNewQuestion}>
+                        <Button onClick={addNewQuestion} ref={newQuestion}>
                             {loadingNewQuestion ? (
                                 <Bars
                                     height="20"

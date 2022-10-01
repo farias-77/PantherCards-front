@@ -102,10 +102,9 @@ const Container = styled.div`
     justify-content: center;
 
     margin-top: 100px;
-    padding-top: 30px;
 
     @media (max-width: 900px) {
-        padding: 100px 0;
+        margin-top: 150px;
     }
 `;
 
@@ -117,9 +116,15 @@ const HomePage = styled.div`
     flex-direction: column;
     align-items: center;
 
+    margin-top: 30px;
+
     @media (max-width: 900px) {
-        padding: 25px;
-        padding-top: 60px;
+        width: 100%;
+
+        margin-top: 10px;
+        margin-bottom: 20px;
+
+        padding: 0 25px;
     }
 `;
 
@@ -142,10 +147,8 @@ const Title = styled.div`
     }
 
     @media (max-width: 500px) {
-        font-size: 13px;
-
         h3 {
-            font-size: 16px;
+            font-size: 20px;
         }
     }
 `;
@@ -191,4 +194,8 @@ const Button = styled.div`
     background-color: black;
 
     cursor: pointer;
+
+    @media (max-width: 900px) {
+        font-size: 13px;
+    }
 `;
