@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import SearchMobile from "./SearchMobile";
+import MenuControl from "./MenuControl";
 import Search from "./Search";
 import Logout from "./Logout";
-import Menu from "./Menu";
 
 export default function Header({ setDisplayHeader, setRefresh }) {
     const navigate = useNavigate();
@@ -17,7 +17,7 @@ export default function Header({ setDisplayHeader, setRefresh }) {
     return (
         <Container>
             <HeaderBox>
-                <Menu />
+                <MenuControl />
                 <Logo onClick={navigateHome}>
                     <img src={logo} alt="logo" />
                     <h1>PantherCards</h1>
@@ -33,7 +33,6 @@ export default function Header({ setDisplayHeader, setRefresh }) {
 const Container = styled.div`
     width: 100%;
 
-    display: flex;
     flex-direction: column;
     align-items: center;
 

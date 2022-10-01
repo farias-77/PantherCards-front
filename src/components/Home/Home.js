@@ -53,39 +53,44 @@ export default function Home({ setDisplayHeader }) {
     }
 
     return (
-        <Container>
-            <HomePage>
-                <Title>
-                    <h3>Seus decks</h3>
-                    <Button onClick={navigateToDeckCreation}>Novo deck</Button>
-                </Title>
-                <Content>
-                    {decks.length > 0 || modalIsOpen ? (
-                        decks.map((deck, index) => (
-                            <DeckCard
-                                deck={deck}
-                                username={username}
-                                key={index}
-                                setRefresh={setRefresh}
-                            />
-                        ))
-                    ) : (
-                        <h5>
-                            Você ainda não tem nenhum deck, crie clicando em
-                            "Novo deck"
-                        </h5>
-                    )}
-                </Content>
-            </HomePage>
-            <Modal
-                isOpen={modalIsOpen}
-                contentLabel="Loading modal"
-                overlayClassName="modal-overlay"
-                className="modal-content"
-            >
-                <Bars height="60" color="white" ariaLabel="Loading..." />
-            </Modal>
-        </Container>
+        <>
+            <Container>
+                <HomePage>
+                    <Title>
+                        <h3>Seus decks</h3>
+                        <Button onClick={navigateToDeckCreation}>
+                            Novo deck
+                        </Button>
+                    </Title>
+                    <Content>
+                        {decks.length > 0 || modalIsOpen ? (
+                            decks.map((deck, index) => (
+                                <DeckCard
+                                    deck={deck}
+                                    username={username}
+                                    key={index}
+                                    setRefresh={setRefresh}
+                                />
+                            ))
+                        ) : (
+                            <h5>
+                                Você ainda não tem nenhum deck, crie clicando em
+                                "Novo deck"
+                            </h5>
+                        )}
+                    </Content>
+                </HomePage>
+
+                <Modal
+                    isOpen={modalIsOpen}
+                    contentLabel="Loading modal"
+                    overlayClassName="modal-overlay"
+                    className="modal-content"
+                >
+                    <Bars height="60" color="white" ariaLabel="Loading..." />
+                </Modal>
+            </Container>
+        </>
     );
 }
 
@@ -93,10 +98,10 @@ const Container = styled.div`
     width: 100%;
     height: 100vh;
 
-    padding-top: 30px;
-
     display: flex;
     justify-content: center;
+
+    margin-top: 100px;
 
     @media (max-width: 900px) {
         padding: 100px 0;
@@ -104,10 +109,10 @@ const Container = styled.div`
 `;
 
 const HomePage = styled.div`
-    width: 100%;
+    width: 80%;
     max-width: 900px;
 
-    padding-top: 100px;
+    padding-top: 30px;
 
     display: flex;
     flex-direction: column;

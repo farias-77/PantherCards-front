@@ -1,7 +1,7 @@
 import { MdOutlineMenu } from "react-icons/md";
 import styled from "styled-components";
 
-export default function Menu() {
+export default function MenuControl() {
     return (
         <Container>
             <MdOutlineMenu />
@@ -13,7 +13,7 @@ const Container = styled.div`
     height: 100%;
     width: 30%;
 
-    display: flex;
+    display: none;
     justify-content: flex-start;
     align-items: center;
     padding-left: 30px;
@@ -29,5 +29,9 @@ const Container = styled.div`
         svg {
             font-size: 30px;
         }
+    }
+
+    @media (max-width: 900px) {
+        display: flex;
     }
 `;
