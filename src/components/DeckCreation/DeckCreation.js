@@ -10,8 +10,10 @@ import DeckTitleEdit from "../Utils/DeckTitleEdit";
 
 export default function DeckCreation() {
     const ONE_SECOND = 1000;
-    const newQuestion = useRef();
     const navigate = useNavigate();
+
+    const questionsErrorScroll = useRef();
+    const newQuestion = useRef();
 
     const [loadingNewQuestion, setLoadingNewQuestion] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -60,6 +62,7 @@ export default function DeckCreation() {
             setTimeout(() => {
                 setModalIsOpen(false);
                 setDeckNameError("Por favor, insira um nome para o deck");
+                window.scrollTo(0, { behavior: "smooth" });
             }, ONE_SECOND);
             return;
         }
@@ -70,6 +73,9 @@ export default function DeckCreation() {
                 setQuestionsError(
                     "Você deve enviar no mínimo uma pergunta, perguntas com campos em branco são desconsideradas"
                 );
+                questionsErrorScroll.current.scrollIntoView({
+                    behavior: "smooth",
+                });
             }, ONE_SECOND);
             return;
         }
@@ -147,7 +153,9 @@ export default function DeckCreation() {
                         />
                     ))}
 
-                    <ErrorMessage>{questionsError}</ErrorMessage>
+                    <ErrorMessage ref={questionsErrorScroll}>
+                        {questionsError}
+                    </ErrorMessage>
 
                     <Controls>
                         <Button onClick={addNewQuestion} ref={newQuestion}>
