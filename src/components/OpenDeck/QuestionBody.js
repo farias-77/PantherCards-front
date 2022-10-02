@@ -48,9 +48,8 @@ export default function QuestionBody({
 }
 
 const Body = styled.div`
-    width: 60%;
-    height: 80%;
-    max-height: 600px;
+    width: 100%;
+    max-width: 500px;
 
     margin-top: 30px;
 
@@ -85,7 +84,6 @@ const Body = styled.div`
 
     @media (max-width: 900px) {
         flex-direction: column;
-        width: 100%;
     }
 `;
 
@@ -204,7 +202,7 @@ const Button = styled.div`
     @media (max-width: 900px) {
         width: calc(100% - 60px);
         height: 30px;
-        font-size: 11px;
+        font-size: 9px;
     }
 `;
 

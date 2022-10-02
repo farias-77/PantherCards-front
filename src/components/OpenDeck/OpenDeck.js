@@ -177,9 +177,8 @@ const Button = styled.div`
     cursor: pointer;
 
     @media (max-width: 900px) {
-        width: calc(100% - 60px);
+        font-size: 13px;
 
-        font-size: 15px;
-        height: 40px;
+        width: 150px;
     }
 `;
