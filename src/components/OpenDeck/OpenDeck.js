@@ -87,7 +87,7 @@ export default function OpenDeck() {
 
 const Container = styled.div`
     width: 100%;
-    height: 100vh;
+    height: 100%;
 
     padding-top: 30px;
 
@@ -120,22 +120,24 @@ const Title = styled.div`
     width: 60%;
 
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 
     font-family: "Krona One", sans-serif;
+
+    text-align: center;
 
     h3 {
         color: white;
         font-size: 20px;
-        line-height: 40px;
-        width: 75%;
+        line-height: 30px;
     }
 
     h4 {
         color: grey;
-        margin-left: 10px;
         font-size: 16px;
+
+        margin-top: 10px;
     }
 
     @media (max-width: 900px) {
@@ -143,10 +145,8 @@ const Title = styled.div`
     }
 
     @media (max-width: 500px) {
-        font-size: 13px;
-
         h3 {
-            font-size: 20px;
+            font-size: 16px;
         }
 
         h4 {
@@ -157,6 +157,7 @@ const Title = styled.div`
 
 const Button = styled.div`
     margin-top: 15px;
+    margin-bottom: 40px;
 
     width: 200px;
     height: 40px;
