@@ -20,10 +20,11 @@ export default function DeckCreation() {
     const [modalIsOpen, setModalIsOpen] = useState(true);
     const [displayLoading, setDisplayLoading] = useState(true);
     const [deckName, setDeckName] = useState("");
-    const [deckQuestions, setDeckQuestions] = useState([]);
     const [deckNameError, setDeckNameError] = useState("");
+    const [deckQuestions, setDeckQuestions] = useState([]);
     const [questionsError, setQuestionsError] = useState("");
     const [deckPrivacy, setDeckPrivacy] = useState(false);
+    const [deckNameBeforeEdit, setDeckNameBeforeEdit] = useState("");
 
     useEffect(() => {
         const url = `https://superzaprecall.onrender.com/deck/${deckId}`;
@@ -36,6 +37,7 @@ export default function DeckCreation() {
         const promise = axios.get(url, config);
         promise.then((res) => {
             setDeckName(res.data.name);
+            setDeckNameBeforeEdit(res.data.name);
             setDeckQuestions([...res.data.questions]);
             setDeckPrivacy(res.data.isPrivate);
             setTimeout(() => setModalIsOpen(false), ONE_SECOND);
@@ -173,7 +175,11 @@ export default function DeckCreation() {
         <Container>
             <EditPage>
                 <Title>
-                    <h3>{deckName ? `Editando: ${deckName}` : ""}</h3>
+                    <h3>
+                        {deckNameBeforeEdit
+                            ? `Editando: ${deckNameBeforeEdit}`
+                            : ""}
+                    </h3>
                 </Title>
                 <Content>
                     <DeckPrivacyEdit
