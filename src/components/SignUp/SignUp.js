@@ -103,7 +103,7 @@ export default function SignUp() {
                     }
                 />
 
-                <Button onClick={submitSignUp}>
+                <Button onClick={submitSignUp} id="submitButton">
                     {displayLoading ? (
                         <Bars
                             height="34"

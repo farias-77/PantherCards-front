@@ -83,7 +83,7 @@ export default function SignIn({ setDisplayHeader }) {
                     }
                 />
 
-                <Button onClick={submitSignIn}>
+                <Button onClick={submitSignIn} id="submitButton">
                     {displayLoading ? (
                         <Bars
                             height="34"
