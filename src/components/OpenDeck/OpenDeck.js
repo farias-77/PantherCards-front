@@ -130,7 +130,7 @@ const Title = styled.div`
     h3 {
         color: white;
         font-size: 20px;
-        line-height: 30px;
+        line-height: 20px;
     }
 
     h4 {

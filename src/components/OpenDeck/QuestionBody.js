@@ -51,7 +51,9 @@ const Body = styled.div`
     width: 100%;
     max-width: 500px;
 
-    margin-top: 30px;
+    height: 80%;
+
+    margin-top: 20px;
 
     display: flex;
     flex-direction: column;
@@ -81,10 +83,6 @@ const Body = styled.div`
     background-color: white;
     border-radius: 12px;
     border: 1px solid white;
-
-    @media (max-width: 900px) {
-        flex-direction: column;
-    }
 `;
 
 const OpacityBackground = styled.div`
@@ -139,7 +137,7 @@ const QuestionData = styled.div`
 
     @media (max-width: 500px) {
         h2 {
-            font-size: 22px;
+            font-size: 18px;
         }
     }
 `;
@@ -202,7 +200,11 @@ const Button = styled.div`
     @media (max-width: 900px) {
         width: calc(100% - 60px);
         height: 30px;
-        font-size: 9px;
+        font-size: 13px;
+    }
+
+    @media (max-width: 450px) {
+        font-size: 10px;
     }
 `;
 
