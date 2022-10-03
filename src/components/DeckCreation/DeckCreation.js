@@ -88,7 +88,7 @@ export default function DeckCreation() {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
         };
-        const body = { name: deckName };
+        const body = { name: deckName, isPrivate: deckPrivacy };
 
         const promise = axios.post(url, body, config);
 
