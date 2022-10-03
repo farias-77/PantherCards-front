@@ -59,6 +59,7 @@ export default function SignIn({ setDisplayHeader }) {
                 </InvalidCredentials>
 
                 <input
+                    id="email"
                     type="email"
                     placeholder="Email"
                     value={credentials.email}
@@ -70,6 +71,7 @@ export default function SignIn({ setDisplayHeader }) {
                     }
                 />
                 <input
+                    id="password"
                     type="password"
                     placeholder="Senha"
                     value={credentials.password}

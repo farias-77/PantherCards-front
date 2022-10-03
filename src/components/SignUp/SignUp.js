@@ -53,6 +53,7 @@ export default function SignUp() {
                 <InvalidCredentials>{errorMessage}</InvalidCredentials>
 
                 <input
+                    id="username"
                     type="username"
                     placeholder="Username"
                     value={credentials.username}
@@ -65,6 +66,7 @@ export default function SignUp() {
                 />
 
                 <input
+                    id="emailSignUp"
                     type="email"
                     placeholder="Email"
                     value={credentials.email}
@@ -76,6 +78,7 @@ export default function SignUp() {
                     }
                 />
                 <input
+                    id="passwordSignUp"
                     type="password"
                     placeholder="Senha"
                     value={credentials.password}
@@ -88,6 +91,7 @@ export default function SignUp() {
                 />
 
                 <input
+                    id="confirmPassword"
                     type="password"
                     placeholder="Confirme a sua senha"
                     value={credentials.confirmPassword}
