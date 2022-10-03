@@ -22,6 +22,7 @@ export default function DeckCreation() {
     const [deckQuestions, setDeckQuestions] = useState([]);
     const [deckNameError, setDeckNameError] = useState("");
     const [questionsError, setQuestionsError] = useState("");
+    const [deckPrivacy, setDeckPrivacy] = useState(false);
 
     useEffect(() => {
         const url = `https://superzaprecall.onrender.com/deck/${deckId}`;
@@ -126,7 +127,7 @@ export default function DeckCreation() {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
         };
-        const body = { name: deckName };
+        const body = { name: deckName, isPrivate: deckPrivacy };
 
         const promise = axios.post(url, body, config);
 
@@ -173,6 +174,11 @@ export default function DeckCreation() {
                     <h3>{deckName ? `Editando: ${deckName}` : ""}</h3>
                 </Title>
                 <Content>
+                    <DeckPrivacyEdit
+                        setDeckPrivacy={setDeckPrivacy}
+                        deckPrivacy={deckPrivacy}
+                    />
+
                     {deckQuestions.length !== 0 ? (
                         <DeckTitleEdit
                             deckName={deckName}
