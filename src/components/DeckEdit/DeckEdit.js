@@ -8,6 +8,7 @@ import axios from "axios";
 
 import DeckQuestionEdit from "../Utils/DeckQuestionEdit";
 import DeckTitleEdit from "../Utils/DeckTitleEdit";
+import DeckPrivacyEdit from "../Utils/DeckPrivacyEdit";
 
 export default function DeckCreation() {
     const { deckId } = useParams();
