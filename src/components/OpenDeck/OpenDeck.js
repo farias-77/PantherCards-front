@@ -34,8 +34,10 @@ export default function OpenDeck() {
     function navigateBack() {
         setModalIsOpen(true);
         setTimeout(() => {
-            navigate(`/user/${deck?.userId}`);
             setModalIsOpen(false);
+            Number(deck.userId) === Number(localStorage.getItem("userId"))
+                ? navigate("/home")
+                : navigate(`/user/${deck?.userId}`);
         }, ONE_SECOND);
     }
 
