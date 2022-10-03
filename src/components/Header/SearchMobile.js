@@ -43,10 +43,12 @@ export default function SearchMobile({ setRefresh }) {
                 {searchResults.length > 0 ? (
                     searchResults.map((result, index) => (
                         <SearchOption
+                            key={index}
                             setRefresh={setRefresh}
                             result={result}
                             isLastResult={index === searchResults.length - 1}
                             setSearch={setSearch}
+                            setDisplayResults={setDisplayResults}
                         />
                     ))
                 ) : (
