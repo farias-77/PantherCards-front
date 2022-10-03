@@ -7,6 +7,7 @@ import axios from "axios";
 
 import DeckQuestionEdit from "../Utils/DeckQuestionEdit";
 import DeckTitleEdit from "../Utils/DeckTitleEdit";
+import DeckPrivacyEdit from "../Utils/DeckPrivacyEdit";
 
 export default function DeckCreation() {
     const ONE_SECOND = 1000;
@@ -15,14 +16,15 @@ export default function DeckCreation() {
     const questionsErrorScroll = useRef();
     const newQuestion = useRef();
 
-    const [loadingNewQuestion, setLoadingNewQuestion] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [loadingNewQuestion, setLoadingNewQuestion] = useState(false);
     const [deckName, setDeckName] = useState("");
     const [deckNameError, setDeckNameError] = useState("");
-    const [questionsError, setQuestionsError] = useState("");
     const [questionsArray, setQuestionsArray] = useState([
         { question: "", answer: "" },
     ]);
+    const [questionsError, setQuestionsError] = useState("");
+    const [deckPrivacy, setDeckPrivacy] = useState(false);
 
     function navigateHome() {
         setModalIsOpen(true);
@@ -138,6 +140,11 @@ export default function DeckCreation() {
                     <h3>Crie um novo deck!</h3>
                 </Title>
                 <Content>
+                    <DeckPrivacyEdit
+                        setDeckPrivacy={setDeckPrivacy}
+                        deckPrivacy={deckPrivacy}
+                    />
+
                     <DeckTitleEdit
                         deckName={deckName}
                         setDeckName={setDeckName}
