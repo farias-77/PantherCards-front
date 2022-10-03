@@ -31,10 +31,10 @@ export default function OpenDeck() {
         });
     }, []);
 
-    function navigateHome() {
+    function navigateBack() {
         setModalIsOpen(true);
         setTimeout(() => {
-            navigate("/home");
+            navigate(`/user/${deck?.userId}`);
             setModalIsOpen(false);
         }, ONE_SECOND);
     }
@@ -71,7 +71,7 @@ export default function OpenDeck() {
                     <h4>{deck.user ? "by " + deck.user.username : ""}</h4>
                 </Title>
                 {deck.questions ? renderQuestions() : <></>}
-                <Button onClick={navigateHome}>Voltar para o menu</Button>
+                <Button onClick={navigateBack}>Voltar</Button>
             </QuestionPage>
             <Modal
                 isOpen={modalIsOpen}
@@ -159,8 +159,8 @@ const Button = styled.div`
     margin-top: 15px;
     margin-bottom: 40px;
 
-    width: 200px;
-    height: 40px;
+    width: 150px;
+    height: 30px;
 
     background-color: black;
     border: 1px solid white;
@@ -168,7 +168,6 @@ const Button = styled.div`
 
     color: white;
     font-size: 18px;
-    line-height: 30px;
 
     display: flex;
     align-items: center;
@@ -177,8 +176,8 @@ const Button = styled.div`
     cursor: pointer;
 
     @media (max-width: 900px) {
-        font-size: 13px;
+        font-size: 16px;
 
-        width: 150px;
+        width: 90px;
     }
 `;
