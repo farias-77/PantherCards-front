@@ -37,6 +37,7 @@ export default function DeckCreation() {
         promise.then((res) => {
             setDeckName(res.data.name);
             setDeckQuestions([...res.data.questions]);
+            setDeckPrivacy(res.data.isPrivate);
             setTimeout(() => setModalIsOpen(false), ONE_SECOND);
         });
     }, []);
