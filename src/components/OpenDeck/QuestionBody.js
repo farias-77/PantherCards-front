@@ -10,7 +10,6 @@ export default function QuestionBody({
     question,
     questionFocus,
     setQuestionFocus,
-    setModalIsOpen,
 }) {
     const [displayAnswer, setDisplayAnswer] = useState(false);
 

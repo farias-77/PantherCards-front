@@ -227,7 +227,7 @@ const Title = styled.div`
     max-width: 600px;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 
     h3 {
