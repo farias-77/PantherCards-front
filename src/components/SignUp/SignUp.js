@@ -56,11 +56,9 @@ export default function SignUp() {
                 <DebounceInput
                     id="username"
                     debounceTimeout={500}
-                    min={3}
                     type="username"
                     placeholder="Username"
                     value={credentials.username}
-                    maxLength={15}
                     onChange={(e) =>
                         setCredentials({
                             ...credentials,
@@ -72,7 +70,6 @@ export default function SignUp() {
                 <DebounceInput
                     id="emailSignUp"
                     debounceTimeout={500}
-                    min={3}
                     type="email"
                     placeholder="Email"
                     value={credentials.email}
@@ -86,7 +83,6 @@ export default function SignUp() {
                 <DebounceInput
                     id="passwordSignUp"
                     debounceTimeout={500}
-                    min={3}
                     type="password"
                     placeholder="Senha"
                     value={credentials.password}
@@ -101,7 +97,6 @@ export default function SignUp() {
                 <DebounceInput
                     id="confirmPassword"
                     debounceTimeout={500}
-                    min={3}
                     type="password"
                     placeholder="Confirme a sua senha"
                     value={credentials.confirmPassword}
