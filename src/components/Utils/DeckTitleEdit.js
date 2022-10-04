@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { DebounceInput } from "react-debounce-input";
+import styled from "styled-components";
 
 export default function DeckTitleEdit({ deckName, setDeckName }) {
     return (
@@ -7,11 +7,14 @@ export default function DeckTitleEdit({ deckName, setDeckName }) {
             <p>Título</p>
             <Title>
                 <DebounceInput
-                    debounceTimeout={500}
+                    min={2}
+                    debounceTimeout={0}
                     placeholder="Título do deck"
                     value={deckName}
                     onChange={(e) => setDeckName(e.target.value)}
+                    maxLength={20}
                 />
+                <p>{20 - deckName.length}</p>
             </Title>
         </Container>
     );
@@ -21,7 +24,7 @@ const Container = styled.div`
     width: 85%;
     max-width: 400px;
 
-    p {
+    > p {
         font-family: "Krona One", sans-serif;
         color: white;
         font-size: 15px;
@@ -39,7 +42,7 @@ const Container = styled.div`
 
 const Title = styled.div`
     width: 100%;
-    padding: 20px;
+    padding: 15px;
 
     border: 1px solid white;
     border-radius: 12px;
@@ -69,6 +72,15 @@ const Title = styled.div`
         ::placeholder {
             color: #9c9c9c;
         }
+    }
+
+    > p {
+        color: white;
+        font-size: 15px;
+        margin-top: 10px;
+
+        width: 100%;
+        text-align: right;
     }
 
     @media (max-width: 900px) {
