@@ -62,7 +62,9 @@ export default function DeckCard({ deck, username, setRefresh }) {
         <Container>
             <Deck onClick={navigateToDeck}>
                 <h3>{deck.name}</h3>
-                <h4>by {username}</h4>
+                <h4>
+                    by {username} {deck.isPrivate ? " (privado)" : ""}
+                </h4>
             </Deck>
             <Controls>
                 {Number(deck.userId) ===
