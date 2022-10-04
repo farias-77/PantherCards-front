@@ -1,7 +1,8 @@
+import { DebounceInput } from "react-debounce-input";
+import logo from "../../assets/logoPanther.png";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Bars } from "react-loader-spinner";
-import logo from "../../assets/logoPanther.png";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -52,11 +53,14 @@ export default function SignUp() {
             <Form>
                 <InvalidCredentials>{errorMessage}</InvalidCredentials>
 
-                <input
+                <DebounceInput
                     id="username"
+                    debounceTimeout={500}
+                    min={3}
                     type="username"
                     placeholder="Username"
                     value={credentials.username}
+                    maxLength={15}
                     onChange={(e) =>
                         setCredentials({
                             ...credentials,
@@ -65,8 +69,10 @@ export default function SignUp() {
                     }
                 />
 
-                <input
+                <DebounceInput
                     id="emailSignUp"
+                    debounceTimeout={500}
+                    min={3}
                     type="email"
                     placeholder="Email"
                     value={credentials.email}
@@ -77,8 +83,10 @@ export default function SignUp() {
                         })
                     }
                 />
-                <input
+                <DebounceInput
                     id="passwordSignUp"
+                    debounceTimeout={500}
+                    min={3}
                     type="password"
                     placeholder="Senha"
                     value={credentials.password}
@@ -90,8 +98,10 @@ export default function SignUp() {
                     }
                 />
 
-                <input
+                <DebounceInput
                     id="confirmPassword"
+                    debounceTimeout={500}
+                    min={3}
                     type="password"
                     placeholder="Confirme a sua senha"
                     value={credentials.confirmPassword}
