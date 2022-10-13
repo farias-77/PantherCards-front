@@ -20,10 +20,12 @@ export default function QuestionBody({
 
     return (
         <Body>
-            <img src={logo} alt="logo" />
-            <OpacityBackground />
             <QuestionData>
-                <h2>{displayAnswer ? question.answer : question.question}</h2>
+                <Text>
+                    <h2>
+                        {displayAnswer ? question.answer : question.question}
+                    </h2>
+                </Text>
 
                 <Controls>
                     {index !== 0 ? (
@@ -42,6 +44,9 @@ export default function QuestionBody({
                     )}
                 </Controls>
             </QuestionData>
+
+            <img src={logo} alt="logo" />
+            <OpacityBackground />
         </Body>
     );
 }
@@ -50,31 +55,25 @@ const Body = styled.div`
     width: 100%;
     max-width: 500px;
 
-    height: 80%;
+    min-height: 500px;
 
     margin-top: 20px;
+    padding: 10px;
 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: space-between;
 
-    overflow: hidden;
     position: relative;
-
-    > h5 {
-        width: 100%;
-        height: 100%;
-
-        text-align: center;
-
-        color: white;
-        font-size: 20px;
-
-        padding-top: 100px;
-    }
 
     img {
         object-fit: cover;
+        border-radius: 12px;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
         width: 100%;
         height: 100%;
     }
@@ -82,6 +81,10 @@ const Body = styled.div`
     background-color: white;
     border-radius: 12px;
     border: 1px solid white;
+
+    @media (max-width: 900px) {
+        min-height: 400px;
+    }
 `;
 
 const OpacityBackground = styled.div`
@@ -97,35 +100,26 @@ const OpacityBackground = styled.div`
 
     background-color: black;
     opacity: 90%;
+
+    border-radius: 12px;
 `;
 
 const QuestionData = styled.div`
     width: 100%;
     height: 100%;
-    padding: 20px;
 
     z-index: 2;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+
+    border-radius: 12px;
 
     h2 {
         font-size: 30px;
         color: white;
-        text-align: center;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        height: 90%;
     }
 
     @media (max-width: 900px) {
@@ -141,11 +135,27 @@ const QuestionData = styled.div`
     }
 `;
 
+const Text = styled.div`
+    width: 95%;
+    height: 90%;
+
+    margin-bottom: 30px;
+    padding: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+`;
+
 const Controls = styled.div`
-    width: 100%;
+    width: 95%;
+    height: 10%;
 
     display: flex;
     justify-content: center;
+    align-items: center;
 
     svg {
         color: white;

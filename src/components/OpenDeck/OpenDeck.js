@@ -89,7 +89,6 @@ export default function OpenDeck() {
 
 const Container = styled.div`
     width: 100%;
-    height: 100%;
 
     padding-top: 30px;
 
@@ -103,7 +102,6 @@ const Container = styled.div`
 
 const QuestionPage = styled.div`
     width: 100%;
-    height: 100%;
     max-width: 1000px;
 
     padding-top: 100px;
@@ -159,7 +157,6 @@ const Title = styled.div`
 
 const Button = styled.div`
     margin-top: 15px;
-    margin-bottom: 40px;
 
     width: 150px;
     height: 30px;
