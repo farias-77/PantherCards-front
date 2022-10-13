@@ -83,7 +83,7 @@ const Body = styled.div`
     border: 1px solid white;
 
     @media (max-width: 900px) {
-        min-height: 400px;
+        min-height: 350px;
     }
 `;
 
@@ -139,7 +139,6 @@ const Text = styled.div`
     width: 95%;
     height: 90%;
 
-    margin-bottom: 30px;
     padding: 15px;
 
     display: flex;
