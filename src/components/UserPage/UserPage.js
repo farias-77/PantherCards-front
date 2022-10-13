@@ -145,6 +145,8 @@ const Button = styled.div`
     width: 200px;
     height: 40px;
 
+    margin-top: 120px;
+
     border-radius: 8px;
     border: 1px solid white;
 
